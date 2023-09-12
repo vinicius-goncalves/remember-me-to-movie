@@ -1,0 +1,141 @@
+:is(custom-label, input[type="submit"]) {
+    width: 75%;
+}
+
+:where(div):is(.inputs-wrapper, .buttons-wrapper) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body {
+    background-color: #1a1423;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main.main-content {
+    max-width: calc(100vw - 45%);
+    min-height: 60vh;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    background-color: var(--color0);
+    overflow: hidden;
+}
+
+picture:has(img.login-background-image) {
+    display: flex;
+    width: 25%;
+    min-height: inherit;
+}
+
+img.login-background-image {
+    content: url("../../images/login-background.jpg");
+    width: 100%;
+    object-fit: cover;
+}
+
+header :is(.title, .description) {
+    font-weight: normal;
+}
+
+header h1.title {
+    color: var(--color4);
+    font-weight: bold;
+}
+
+header small.description {
+    color: var(--gray0);
+    text-align: left;
+}
+
+main.main-content section.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+section.form form[data-js="login-container"] {
+    width: 100%;
+}
+
+custom-label label[data-label="wrapper"] {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    color: var(--color4);
+}
+
+custom-label label[data-label="wrapper"] > span[data-label="title"] {
+    margin: 5px 0;
+}
+
+custom-input input {
+    width: 100%;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    border-radius: 7px;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+.or {
+    display: inline-block;
+    color: var(--color4);
+    position: relative;
+    margin: 10px;
+}
+
+.or::before, .or::after {
+    content: "";
+    min-width: calc(100% + 5rem);
+    min-height: 2px;
+    margin: 0 10px;
+    background-color: var(--color1);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.or::before { right: 100%; }
+.or::after { left: 100%; }
+
+@media screen and (max-width: 730px) {
+
+    header {
+        font-size: .8rem;
+    }
+
+    picture:has(img.login-background-image) {
+        display: none;
+    }
+
+    main.main-content {
+        width: 100%;
+        padding: 2rem;
+        z-index: 1;
+    }
+
+    form[data-js="login-container"] {
+        max-width: 100%;
+    }
+
+    .or::before, .or::after {
+        min-width: calc(100% + 1rem);
+    }
+
+    img.login-with-google {
+        width: 100%;
+    }
+}

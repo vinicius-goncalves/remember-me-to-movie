@@ -1,0 +1,25 @@
+input[type="button"].custom-btn,
+input[type="submit"].custom-btn {
+    padding: 7px;
+    background-color: var(--color3);
+    color: var(--color4);
+    border: none;
+    transition: box-shadow .25s;
+}
+
+input[type="password"].custom-field,
+input[type="email"].custom-field,
+input[type="text"].custom-field {
+    padding: 7px;
+    border: 1px solid var(--gray0);
+    border-radius: 7px;
+    color: var(--color4);
+    background-color: var(--color0);
+}
+
+input[type="password"].custom-field:focus,
+input[type="email"].custom-field:focus,
+input[type="text"].custom-field:focus {
+    outline: none;
+    border: 1px solid var(--color3);
+}

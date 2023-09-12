@@ -1,0 +1,240 @@
+*{margin:0;padding:0;box-sizing: border-box;}
+
+:root {
+    --color0: #291f37;
+    --color1: #54466a;
+    --color2: #d10700;
+    --color3: #fc0a02;
+    --color4: #ffffff;
+    --color5: #4285f4;
+    --color6: #1c1429;
+
+    --gray0: #aaaaaa;
+}
+
+body {
+    background-color: var(--color6);
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    max-width: 1000px;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    background-color: var(--color0);
+    padding: 25px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+}
+
+nav a {
+    color: var(--color4);
+    text-decoration: none;
+    margin: 0 25px;
+}
+
+.logged-in-overlay-wrap  {
+    background-color: #00000081;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: none;
+    text-align: center;
+    line-height: calc(100% * 7);
+    font-size: 32px;
+    font-weight: 200;
+}
+
+.logged-in-overlay-wrap a {
+    text-decoration: none;
+
+}
+
+.library {
+    position: relative;;
+}
+
+.movies-in-library-overlay {
+    position: absolute;
+    bottom: 60%;
+    left: 97%;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: var(--color3);
+}
+
+.movies-in-library-number-overlay {
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;   
+    font-size: 17px;
+}
+
+.movies-in-library {
+    position: absolute;
+    right: 357px;
+    top: 23px;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background-color: var(--color3);
+}
+
+.movies-in-library .movies-in-library-number {
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 17px;
+}
+
+.notification-wrap {
+    position: absolute;
+    background-color: var(--color1);
+    height: 250px;
+    display: none;
+    overflow: hidden scroll;
+    top: 60%;
+    right: 9%;
+    width: 500px;
+    padding: 10px;
+}
+
+
+.check-read {
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.check-read:hover {
+    color: var(--color2)
+}
+
+.notification-nav-bar-wrap:hover .notification-wrap {
+    display: block;
+}
+
+.notification-icon {
+    font-size: 23px;
+    color: white;
+    
+}
+
+
+.notification-icon-wrap-number {
+    position: absolute;
+    right: 87px;
+    top: 25px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: var(--color3);
+    z-index: 1;
+}
+
+.notification-icon-wrap-number .notification-icon-number {
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 15px;  
+}
+
+::-webkit-scrollbar {
+    background-color: var(--color7);
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #291f37;
+}
+
+.menu {
+    display: none !important;
+    color: white;
+    font-size: 32px;
+}
+
+#user-image-profile-navbar {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+#loader-profile-image-container-navbar {
+    position: absolute;
+    right: calc(63px / 2);
+    z-index: 5;
+}
+
+#loader-profile-navbar {
+    width: 35px;
+    height: 35px;
+    border: 5px solid white;
+    border-bottom-color: #fc0a02;
+    border-radius: 50%;
+    animation: rotate 1s infinite alternate;
+    opacity: .5;
+}
+
+.logged-in-overlay-wrap a {
+    color: white;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width:800px) {
+    nav a:not(.menu, .notification-nav-bar-wrap) {
+        display: none !important;
+    }
+
+    .movies-in-library {
+        position: absolute;
+        top: 25%;
+        left: 13%;
+        /* transform: translate(-50%, -50%); */
+    }
+
+    .menu {
+        display: block !important;
+        position: absolute;
+        top: 50%;
+        left: 12%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+
+    .logged-in-overlay-wrap {
+        z-index: 25;
+    }
+}

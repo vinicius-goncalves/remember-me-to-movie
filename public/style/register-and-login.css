@@ -1,0 +1,75 @@
+.flex-column-configuration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+main.main-content {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main.main-content header {
+    text-align: center;
+}
+
+header :is(.title, .description) {
+    font-weight: normal;
+}
+
+header h1.title {
+    color: var(--color2);
+}
+
+header h2.description {
+    color: var(--color4);
+}
+
+.or {
+    display: inline-block;
+    color: var(--color4);
+    position: relative;
+}
+
+.or::before, .or::after {
+    content: "";
+    min-width: 10rem;
+    min-height: 2px;
+    margin: 0 10px;
+    background-color: var(--color1);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.or::before { right: 100%; }
+.or::after { left: 100%; }
+
+form[data-js="login-container"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+div.inputs, div.buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+/* .create-account-button, .login-button {
+    padding: 5px;
+    width: 400px;
+    background-color: var(--color3);
+    border: none;
+    transition: box-shadow .25s;
+}
+
+.create-account-button:hover, .login-button:hover {
+    box-shadow: 1px 1px 10px var(--color2);
+} */

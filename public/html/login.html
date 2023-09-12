@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/auth/login.css">
+    <link rel="stylesheet" href="../style/template.css">
+    <link rel="stylesheet" href="../style/elements.css">
+    <title>Login | Remember me to movie</title>
+</head>
+<body>
+    <main class="main-content">
+        <picture>
+            <img class="login-background-image">
+        </picture>
+        <section class="form">
+            <header>
+                <h1 class="title">Welcome back!</h1>
+                <small class="description">Sign in to see your library</small>
+            </header>
+            <form data-js="login-container">
+                <div class="inputs-wrapper">
+                    <custom-label
+                        data-js="login-field"
+                        label-title="Email"
+                        input-type="text"></custom-label>
+                    <custom-label
+                        data-js="login-field"
+                        label-title="Password"
+                        input-type="password"></custom-label>
+                </div>
+                <div class="buttons-wrapper">
+                    <input
+                        data-btn="login"
+                        class="custom-btn"
+                        type="submit"
+                        value="Sign in">
+                    <span class="or">Or</span>
+                    <aside>
+                        <img
+                            class="login-with-google"
+                            src="../images/btn_sign_in_google.png">
+                    </aside>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script src="../js/pages/login.js" type="module"></script>
+    <script src="../js/firebase/AuthUser.js" type="module"></script>
+</body>
+</html>
