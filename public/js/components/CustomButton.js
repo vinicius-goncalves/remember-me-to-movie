@@ -2,7 +2,7 @@ import ComponentSettings from './ComponentSettings.js'
 
 const helperArgs = {
     *[Symbol.iterator]() {
-        return [ this.componentName ]
+        yield [ this.componentName ]
     },
     componentName: 'custom-button'
 }
