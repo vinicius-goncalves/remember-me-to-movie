@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style/template.css">
-    <link rel="stylesheet" href="/style/search-movie.css">
-    <title>Pesquisar por filmes - Lembre-me de assistir</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/public/style/elements.css">
+    <link rel="stylesheet" href="/public/style/template.css">
+    <link rel="stylesheet" href="/public/style/search-movie.css">
+    <title>Search a movie | Remember me to movie</title>
 </head>
 <body>
 
@@ -23,12 +23,11 @@
         </a>
         <a href="./profile.html" data-js="logged-in" style="display: block;">Minha conta</a>
         <a href="#" data-js="logged-in" style="display: block;" data-loggout="loggout">Sair</a>
-        
         <a href="/html/login.html" data-js="logged-out" style="display: block;">Entrar</a>
         <a href="/html/register.html" data-js="logged-out" style="display: block;">Registrar</a>
     </div>
 
-    <nav data-js="nav-bar" class="nav-bar-wrap">
+    <nav data-js="navbar" class="nav-bar-wrap">
 
         <i class="fas fa-equals menu" data-js="logged-in"></i>
 
@@ -39,54 +38,40 @@
         <a href="./library.html" data-js="logged-in" style="display: none;">Minha biblioteca</a>
         <a href="./profile.html" data-js="logged-in" style="display: none;">Minha conta</a>
         <a href="#" data-js="logged-in" style="display: none;" data-loggout="loggout">Sair</a>
-        
+
         <div data-js="logged-in" class="notification-icon-wrap-number">
             <span class="notification-icon-number">0</span>
         </div>
-        
+
         <a href="#" data-js="logged-in" class="notification-nav-bar-wrap">
             <i class="fas fa-bell notification-icon"></i>
             <div class="notification-wrap"></div>
         </a>
-        
+
         <a href="/html/login.html" data-js="logged-out" style="display: none;">Entrar</a>
         <a href="/html/register.html" data-js="logged-out" style="display: none;">Registrar</a>
 
         <div data-js="logged-in" id="loader-profile-image-container-navbar">
             <div id="loader-profile-navbar"></div>
         </div>
-        <img src="/images/user-photo-profile.png" data-js="logged-in" id="user-image-profile-navbar">
+        <img src="/public/images/user-photo-profile.png" data-js="logged-in" id="user-image-profile-navbar">
     </nav>
 
-    <form id="form-search-container" data-js="form-search-container">
-        <input type="search" name="search-movie-term" id="search-movie-term" value="Batman" list="recent-search"  autocomplete="off" onfocus="this.value = ''">
-        <input type="submit" name="button-search" id="button-search" value="Pesquisar">
-    </form>
-
-    <datalist id="recent-search">
-    </datalist>
+    <div data-js="form-search-container">
+        <input data-js="movie-to-search" type="search" placeholder="What do you want to search?" value="simpsons">
+        <input data-btn="search-movie" class="custom-btn" type="button" value="Pesquisar">
+    </div>
 
     <section id="section-search-result-container">
-        <ul id="ul-movies-search-result">
-            <!-- <li data-li="${value.id}">
-                <img src="https://image.tmdb.org/t/p/w500/2WIwz0qJpnVAiofTAhrmhbKxuvE.jpg" class="movie-poster">
-                <aside class="movie-details-container">
-                    <h2 class="movie-name">${value.title}</h2>
-                    <h5 class="release-date">Data de lançamento: ${value.release_date}</h5>
-                    <h6 class="movie-id">${value.id}</h6>
-                </aside>
-                <p class="movie-description">${value.overview}</p>
-                <button class="add-to-library" data-js="${value.id}">
-                    <span class="text-add-to-library">Adicionar a biblioteca</span>
-                    <span class="added-into-library"><p>Conteúdo adicionado</p></span>
-                </button>
-            </li> -->
-        </ul>
+        <ul id="ul-movies-search-result"></ul>
+    </section>
+
+    <section>
+        <ul data-js="pagination"></ul>
     </section>
     <!-- Scripts -->
-    <script type="module" src="/js/authAndRequests.js"></script>
-    <script type="module" src="/js/userExperience.js"></script>
-    <script type="module" src="/js/searchMoviesRequest.js"></script>
-    <script src="https://kit.fontawesome.com/866e7f0be4.js" crossorigin="anonymous"></script>
+    <!-- <script type="module" src="/js/authAndRequests.js"></script>
+    <script type="module" src="/js/userExperience.js"></script>-->
+    <script type="module" src="/public/js/search-movie-request.js"></script>
 </body>
 </html>

@@ -35,7 +35,7 @@ picture:has(img.login-background-image) {
 }
 
 img.login-background-image {
-    content: url("../../images/login-background.jpg");
+    content: url("/public/images/login-background.jpg");
     width: 100%;
     object-fit: cover;
 }

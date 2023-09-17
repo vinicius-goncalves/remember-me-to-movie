@@ -1,17 +1,20 @@
-/*
- ! Section for form search container/wrap
-*/
-#form-search-container {
+body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin: 150px 0 calc(150px / 3) 0;
 }
 
-#form-search-container #search-movie-term {
+[data-js="form-search-container"] {
+    display: flex;
+    justify-content: center;
+    margin: 150px auto;
+    min-width: 100vw;
+}
+
+[data-js="form-search-container"] [data-js="movie-to-search"] {
     width: 100%;
     max-width: 500px;
-    margin: 10px;
+    margin: 0 10px;
     padding: 10px;
     background-color: var(--color1);
     border: none;
@@ -21,25 +24,39 @@
     text-align: center;
 }
 
-#form-search-container #button-search {
-    padding: 10px;
-    background-color: red;
-    color: white;
-    font-weight: 600;
+section > ul[data-js="pagination"] {
+    display: flex;
+    place-items: center;
+    font-size: 1.2rem;
+    user-select: none;
+    -webkit-user-select: none;
+    list-style-type: none;
+}
+
+ul[data-js="pagination"] span.page-control,
+ul[data-js="pagination"] .page-active {
+    border-radius: 3px;
     cursor: pointer;
-    margin-left: 25px;
-    width: 120px;
-    border: none;
-    transition: box-shadow .5s;
 }
 
-#form-search-container #button-search:hover {
-    box-shadow: 1px 1px 10px var(--color2);
+ul[data-js="pagination"] span.page-control {
+    background-color: var(--color2);
+    color: var(--color4);
 }
-/*
- ! Section for form search container/wrap
-*/
 
+ul[data-js="pagination"] .page-active {
+    color: var(--color2);
+    background-color: var(--color4);
+    text-align: center;
+    margin: 0 10px;
+    padding: 0 10px;
+    width: 100%;
+}
+
+ul[data-js="pagination"] li.page {
+    color: var(--color4);
+    margin: 0 10px;
+}
 /*
  Section that appears the movies result by searched term before
  ! This sections is for result container, when the user makes a search

@@ -17,11 +17,10 @@ async function initializeFirebase(firebaseSettings) {
     const auth = getAuth()
     const db = getFirestore()
 
-    return { db, auth }
+    return { db, auth };
 }
 
 const res = await fetch(API_URL)
 const { data: firebaseSettings } = await res.json()
 
-
-export default (await initializeFirebase(firebaseSettings))
+export default (await initializeFirebase(firebaseSettings));

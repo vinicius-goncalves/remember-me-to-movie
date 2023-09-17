@@ -5,23 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha biblioteca - Lembre-me de assistir</title>
-    <link rel="stylesheet" href="/style/library.css">
-    <link rel="stylesheet alternative" href="/style/template.css">
+    <link rel="stylesheet" href="/public/style/library.css">
+    <link rel="stylesheet alternative" href="/public/style/template.css">
 </head>
 <body>
-    <nav data-js="nav-bar">
-        <a href="./search-movies.html" data-js="logged-in" style="display: none;">Buscar filme</a>
-        <a href="./library.html" data-js="logged-in" style="display: none;">Minha biblioteca</a>
-        <a href="./profile.html" data-js="logged-in" style="display: none;">Minha conta</a>
-        <a href="#" data-js="logged-in" style="display: none;" data-loggout="loggout">Sair</a>
-        <a href="/html/login.html" data-js="logged-out" style="display: none;">Entrar</a>
-        <a href="/html/register.html" data-js="logged-out" style="display: none;">Registrar</a>
+    <nav data-js="navbar">
+        <a data-navbar-btn="search-movie" href="./search-movies.html" data-js="logged-in">Buscar filme</a>
+        <a href="./library.html" data-js="logged-in">Minha biblioteca</a>
+        <a href="./profile.html" data-js="logged-in">Minha conta</a>
+        <a data-navbar-btn="logged-out" data-js="logged-out logged-in" href="#">Sair</a>
+        <a href="/html/login.html" data-js="logged-out">Entrar</a>
+        <a href="/html/register.html" data-js="logged-out">Registrar</a>
 
         <div data-js="logged-in" id="loader-profile-image-container-navbar">
             <div id="loader-profile-navbar"></div>
         </div>
-        <img src="/images/user-photo-profile.png" data-js="logged-in" id="user-image-profile-navbar">
-
+        <img src="/public/images/user-photo-profile.png" data-js="logged-in" id="user-image-profile-navbar">
     </nav>
 
     <div class="user-information">
@@ -38,7 +37,7 @@
         </li> -->
     </ul>
 
-    <script type="module" src="/js/library.js"></script>
-    <script src="https://kit.fontawesome.com/866e7f0be4.js" crossorigin="anonymous"></script>
+    <script type="module" src="/public/js/library.js"></script>
+    <!-- <script src="https://kit.fontawesome.com/866e7f0be4.js" crossorigin="anonymous"></script> -->
 </body>
 </html>

@@ -1,4 +1,3 @@
-const https = require('https')
 const MOVIEDB_URL = 'https://api.themoviedb.org'
 
 async function fetchTo(url) {
@@ -17,21 +16,21 @@ function getDefaultURLRequest() {
     return url
 }
 
-function getMovieSearchURL() {
+function getMovieSearchURL(page = 1) {
 
     const url = getDefaultURLRequest()
     const searchParams = url.searchParams
 
     searchParams.set('language', 'en-US')
-    searchParams.set('page', 1)
+    searchParams.set('page', page)
     searchParams.set('include_adult', false)
 
     return url
 }
 
-async function getMovieByName(name) {
+async function getMovieByName(name, page = 1) {
 
-    const url = getMovieSearchURL()
+    const url = getMovieSearchURL(page)
     const searchParams = url.searchParams
 
     searchParams.set('query', name)
@@ -41,6 +40,6 @@ async function getMovieByName(name) {
     return data
 }
 
-module.exports = {
+export {
     getMovieByName
 }

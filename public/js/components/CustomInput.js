@@ -11,8 +11,14 @@ const helper = new ComponentSettings(
 
 class CustomInput extends HTMLElement {
 
-    constructor({ type, placeholder, value }) {
+    constructor() {
         super()
+
+        const [ type, placeholder, value ] = Array.of(
+            [this.getAttribute('data-type'), 'text'],
+            [this.getAttribute('placeholder'), ''],
+            [this.getAttribute('value'), '']
+        ).map(([ el, defaultValue ]) => !el ? defaultValue : el)
 
         if(!type) {
             throw new Error(helper.errorMessages.UNDEFINED_TYPE)
@@ -23,12 +29,12 @@ class CustomInput extends HTMLElement {
         }
 
         const input = document.createElement('input')
-        input.setAttribute('type', type)
         input.classList.add('custom-field')
+        this.mainElement = input
 
         Array.of(['placeholder', placeholder], ['value', value]).forEach(([ attr, value ]) => {
 
-            if(typeof value === 'undefined') {
+            if(!value) {
                 return
             }
 
@@ -41,10 +47,13 @@ class CustomInput extends HTMLElement {
     connectedCallback() {
 
         const selfEl = this
+        const input = selfEl.mainElement
 
         if(!selfEl.isConnected) {
             return
         }
+
+        input.type = selfEl.getAttribute('data-type')
 
         selfEl.addEventListener('input', (event) => {
 

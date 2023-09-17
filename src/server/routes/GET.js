@@ -3,6 +3,7 @@ import * as MovieController from '../controller/MovieController.js'
 import express from 'express'
 const Router = express.Router()
 
-Router.get('/movies/:movie', (req, res) => MovieController.getByName(req, res))
+const getByName = (req, res) => MovieController.getByName(req, res)
+Router.get('/movies/:movie', getByName)
 
 export default Router

@@ -16,11 +16,12 @@ class CustomLabel extends HTMLElement {
 
         const label = document.createElement('label')
         const span = document.createElement('span')
-        const customInput = new CustomInput({ type: this.getAttribute('input-type') })
+        const customInput = new CustomInput()
 
-        customInput.dataset.js = this.getAttribute('data-js')
-        customInput.dataset.type = this.getAttribute('label-title').toLowerCase()
-
+        customInput.dataset.type = 'email'
+        // customInput.dataset.js = this.getAttribute('data-js')
+        // customInput.dataset.type = this.getAttribute('label-title').toLowerCase()
+        
         label.setAttribute('data-label', 'wrapper')
         span.setAttribute('data-label', 'title')
 
