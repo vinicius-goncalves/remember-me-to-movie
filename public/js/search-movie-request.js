@@ -18,13 +18,15 @@ const pagesUl = select('ul[data-js="pages"]')
 
 })()
 
-const { poster } = {
-    poster: 'https://image.tmdb.org/t/p/w500'
+const { poster, null_poster_path } = {
+    poster: 'https://image.tmdb.org/t/p/w500',
+    null_poster_path: 'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
 }
 
-const posterPath = (imageLocation) => poster.concat('/', imageLocation)
+const posterPath = (imageLocation) =>
+    imageLocation ? poster.concat('/', imageLocation) : null_poster_path
 
-`<li data-li='${id}'>
+//`<li data-li='${id}'>
 //                 <img src='${verifyImagePath}' class='movie-poster'>
 //                 <article>
 //                     <aside class='movie-details-container'>
@@ -44,10 +46,21 @@ function renderMovies(movies) {
 
     const renderMovie = movie => {
 
-        const { id, title, overview, release_date } = movie
+        const { id,
+            title,
+            overview,
+            release_date,
+            poster_path
+        } = movie
 
         const li = document.createElement('li')
-        li.dataset.li = id
+        li.dataset.movie = `wrapper-${id}`
+
+        const img = document.createElement('img')
+        img.dataset.movie = 'poster'
+        img.src = posterPath(poster_path)
+
+        li.append(img)
 
         return li
     }
@@ -56,18 +69,19 @@ function renderMovies(movies) {
 
     const paginationSettings = (() => {
 
-        const moviesPerPage = 7
-        const currPage = 1
+        const moviesPerPage = 9
+        const startPage = 1
         const totalPages = Math.ceil(moviesRendered.length / moviesPerPage)
 
         return {
             moviesPerPage,
-            currPage,
+            startPage,
             totalPages
         }
+
     })()
 
-    UserExperiences.createPagination(paginationSettings)
+    UserExperiences.createPagination({ ...paginationSettings, moviesRendered })
 }
 
 async function searchMovie() {
@@ -80,6 +94,7 @@ async function searchMovie() {
 }
 
 searchMovieBtn.addEventListener('click', searchMovie)
+searchMovieBtn.dispatchEvent(new Event('click'))
 
 // import { auth, db, apiKeyMovieDB } from './authAndRequests.js'
 // import { userNavbar, extractPropFromCurrentUser, updateUserInformation } from './userExperience.js'

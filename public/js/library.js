@@ -1,4 +1,4 @@
-import * as AuthUser from './firebase/classes/AuthUser.js'
+import AuthUser from './firebase/classes/AuthUser.js'
 import * as UserExperiences from './user-experiencies.js'
 import { select } from './utils.js'
 

@@ -5,6 +5,7 @@ import { createIcon, select } from './utils.js'
 
 
 const navbarWrapper = select('[data-js="navbar"]')
+const movieSearchResult = select('[data-js="movie-search-result"]')
 const paginationWrapper = select('ul[data-js="pagination"]')
 // const menu = document.querySelector('.menu')
 // const overlay = document.querySelector('.logged-in-overlay-wrap')
@@ -28,16 +29,35 @@ function loadNavbar(user) {
         .forEach(hideOrShowElSideEffect)
 }
 
-async function createPagination({ currPage, totalPages, moviesPerPage }) {
+function clearChildren(...elements) {
+    elements.forEach(el => el.replaceChildren())
+}
 
-    const args = [...arguments].at(0)
+async function createPagination(paginationSettings) {
 
-    paginationWrapper.replaceChildren()
+    clearChildren(movieSearchResult, paginationWrapper)
+
+    paginationWrapper.parentElement.removeAttribute('style')
+
+    let { startPage, totalPages } = paginationSettings
+    const { moviesPerPage, moviesRendered } = paginationSettings
 
     let start = 1
-    let end = 5
+    let end = totalPages < 5 ?  totalPages : 5
 
-    console.log(arguments)
+    const groupPages = (end - start) + 1
+    const halfGroupPages = Math.ceil(groupPages / 2)
+
+    if(startPage < halfGroupPages) {
+        start = 1
+        end = end
+    } else if(startPage >= halfGroupPages && startPage <= totalPages - halfGroupPages) {
+        start = startPage - 2
+        end = startPage + 2
+    } else {
+        start = totalPages - halfGroupPages - 1
+        end = totalPages
+    }
 
     const createButton = (type) => {
 
@@ -62,12 +82,12 @@ async function createPagination({ currPage, totalPages, moviesPerPage }) {
         return icon
     }
 
-    const createPage = (currPage = 1, activePage = false) => {
+    const createPage = (startPage = 1, activePage = false) => {
 
         const li = document.createElement('li')
         const classToAdd = activePage ? 'page-active' : 'page'
 
-        li.textContent = currPage
+        li.textContent = startPage
         li.classList.add(classToAdd)
         paginationWrapper.appendChild(li)
 
@@ -77,30 +97,48 @@ async function createPagination({ currPage, totalPages, moviesPerPage }) {
     const renderPages = async () => {
 
         for(let i = start; i <= end; i++) {
-
             if(i <= 0) {
                 continue
             }
 
-            createPage(i, i == currPage)
+            createPage(i, i == startPage)
         }
     }
 
-    if(currPage > 1) {
-        createButton('prev').onclick = () => createPagination({
-            ...args,
-            currPage: --currPage
-        })
-    }
+    ;(() => {
 
-    renderPages()
+        if(startPage > 1) {
+            createButton('prev').onclick = () => createPagination({
+                ...paginationSettings,
+                startPage: --startPage
+            })
+        }
 
-    if(currPage <= totalPages) {
-        createButton('next').onclick = () => createPagination({
-            ...args,
-            currPage: ++currPage
+        renderPages()
+
+        if(startPage < totalPages) {
+            createButton('next').onclick = () => createPagination({
+                ...paginationSettings,
+                startPage: ++startPage
+            })
+        }
+
+    })()
+
+    ;(() => {
+
+        const startIndex = (startPage - 1) * moviesPerPage
+        const endIndex = startPage * moviesPerPage
+
+        movieSearchResult.append(...moviesRendered.slice(startIndex, endIndex))
+
+        document.documentElement.scrollTo({
+            top: (movieSearchResult.offsetTop - 25) - navbarWrapper.clientHeight,
+            behavior: 'smooth'
         })
-    }
+
+    })()
+
 }
 
 // export const signOutUser =

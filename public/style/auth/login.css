@@ -2,7 +2,7 @@
     width: 75%;
 }
 
-:where(div):is(.inputs-wrapper, .buttons-wrapper) {
+div:is(.inputs-wrapper, .buttons-wrapper) {
     width: 100%;
     display: flex;
     flex-direction: column;

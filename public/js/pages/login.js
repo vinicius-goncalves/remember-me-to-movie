@@ -17,7 +17,7 @@ const authUser = new AuthUser()
     const user = await authUser.getUser()
 
     if(user) {
-        const libraryPath = '/public/html/user/library.html'
+        const libraryPath = '/public/html/features/library.html'
         window.location.assign(libraryPath)
     }
 
@@ -41,7 +41,7 @@ async function startLogin() {
 
         await authUser.invokeUserLogInProcess(email, password)
 
-        const libraryPath = '/public/html/user/library.html'
+        const libraryPath = '/public/html/features/library.html'
         window.location.assign(libraryPath)
 
     } catch(err) {

@@ -7,11 +7,12 @@ body {
 [data-js="form-search-container"] {
     display: flex;
     justify-content: center;
-    margin: 150px auto;
+    margin: 150px auto calc(150px - (25px * 4));
     min-width: 100vw;
 }
 
 [data-js="form-search-container"] [data-js="movie-to-search"] {
+    border-radius: 5px;
     width: 100%;
     max-width: 500px;
     margin: 0 10px;
@@ -24,13 +25,52 @@ body {
     text-align: center;
 }
 
+section:has(ul[data-js="movie-search-result"]) {
+    min-width: 90vw;
+}
+
+ul[data-js="movie-search-result"] {
+    flex-grow: 1;
+    flex-basis: 100%;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    justify-content: center;
+}
+
+ul[data-js="movie-search-result"] li[data-movie|="wrapper"] {
+    max-height: 250px;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+ul[data-js="movie-search-result"] li[data-movie|="wrapper"] img {
+    width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+    transition: transform 200ms;
+    cursor: pointer;
+    object-fit: cover;
+    object-position: top;
+}
+
+ul[data-js="movie-search-result"] li[data-movie|="wrapper"] img:hover {
+    transform: scale(1.1);
+}
+
 section > ul[data-js="pagination"] {
+    border: 1px solid var(--color1);
+    padding: 10px;
+    border-radius: 5px;
     display: flex;
     place-items: center;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     user-select: none;
     -webkit-user-select: none;
     list-style-type: none;
+    margin: 25px 0;
 }
 
 ul[data-js="pagination"] span.page-control,
@@ -42,6 +82,12 @@ ul[data-js="pagination"] .page-active {
 ul[data-js="pagination"] span.page-control {
     background-color: var(--color2);
     color: var(--color4);
+    padding: 5px;
+    transition: opacity 200ms;
+}
+
+ul[data-js="pagination"] span.page-control:hover {
+    opacity: .8;
 }
 
 ul[data-js="pagination"] .page-active {
@@ -57,37 +103,26 @@ ul[data-js="pagination"] li.page {
     color: var(--color4);
     margin: 0 10px;
 }
-/*
- Section that appears the movies result by searched term before
- ! This sections is for result container, when the user makes a search
- */
 
-#section-search-result-container {
-    color: white;
-    display: flex;
-    padding: 25px;
-    font-size: 23px;
+@media screen and (max-width: 700px) {
+
+    ul[data-js="movie-search-result"] {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    ul[data-js="movie-search-result"]:nth-last-col {
+        background-color: red;
+    }
+
+    ul[data-js="movie-search-result"] li[data-movie|="wrapper"]:nth-last- {
+        max-height: 75%;
+    }
+
+    ul[data-js="movie-search-result"] li[data-movie|="wrapper"] img {
+        object-fit: contain;
+    }
 }
-
-#ul-movies-search-result {
-    list-style-type: none;
-}
-
-#ul-movies-search-result li {
-    display: flex;
-}
-
-/*
- Section that appears the movies result by searched term before
- ! This sections is for result container, when the user makes a search
- */
-
-/* 
-    Add to library button style
-    ! Style for button 'Add to library', when the user clicks on this one
-*/
-
-.add-to-library {
+/* .add-to-library {
     width: 250px;
     height: 25px;
     background-color: var(--color2);
@@ -143,7 +178,7 @@ ul[data-js="pagination"] li.page {
     ! This section contains the details like movie Title, movie Description,
     ! movie Release Date, and others details like this
 */
-
+/* 
 .movie-poster {
     width: 100%;
     max-width: 250px;
@@ -173,4 +208,4 @@ ul[data-js="pagination"] li.page {
     text-align: justify;
     margin-right: 10px;;
 
-}
+} */
