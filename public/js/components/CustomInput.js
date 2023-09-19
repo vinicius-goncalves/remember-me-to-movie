@@ -1,11 +1,13 @@
 import ComponentSettings from './ComponentSettings.js'
 
 const helper = new ComponentSettings(
-    'custom-input',
-    ['text', 'email', 'password'],
     {
-        UNDEFINED_TYPE: 'You must specify at least the input type.',
-        INVALID_TYPE: (type) => `The type "${type}" is not accept.`
+        componentName: 'custom-input',
+        validTypes: ['text', 'email', 'password'],
+        errorMessages: {
+            UNDEFINED_TYPE: 'You must specify at least the input type.',
+            INVALID_TYPE: (type) => `The type "${type}" is not accept.`
+        }
     }
 )
 
@@ -69,6 +71,6 @@ class CustomInput extends HTMLElement {
     }
 }
 
-helper.defineElement(CustomInput)
+helper.defineComponent(CustomInput, { extends: 'input' })
 
 export default CustomInput

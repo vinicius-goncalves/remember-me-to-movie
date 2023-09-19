@@ -1,10 +1,14 @@
 // const { default: { auth } } = await import('./firebase/main.js');
 
 // import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
-import { createIcon, select } from './utils.js'
-
+import {
+    select,
+    clearChildren,
+    createIcon
+} from './utils.js'
 
 const navbarWrapper = select('[data-js="navbar"]')
+
 const movieSearchResult = select('[data-js="movie-search-result"]')
 const paginationWrapper = select('ul[data-js="pagination"]')
 // const menu = document.querySelector('.menu')
@@ -27,10 +31,6 @@ function loadNavbar(user) {
     navbarChildren
         .map(hideOrShowEl)
         .forEach(hideOrShowElSideEffect)
-}
-
-function clearChildren(...elements) {
-    elements.forEach(el => el.replaceChildren())
 }
 
 async function createPagination(paginationSettings) {

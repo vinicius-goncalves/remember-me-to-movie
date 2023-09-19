@@ -1,0 +1,13 @@
+nav[data-component-name="custom-navbar"] {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 100%;
+
+    display: flex;
+    justify-content: end;
+    background-color: var(--color0);
+    padding: 30px;
+
+    z-index: 1;
+}

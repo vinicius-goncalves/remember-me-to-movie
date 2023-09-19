@@ -1,3 +1,5 @@
+await import('./components/navbar/CustomNavbar.js')
+await import('./components/navbar/NavbarOption.js')
 await import('./components/CustomInput.js')
 
 import AuthUser from './firebase/classes/AuthUser.js'
@@ -8,13 +10,12 @@ const authUser = new AuthUser()
 
 const movieToSearch = select('[data-js="movie-to-search"]')
 const searchMovieBtn = select('[data-btn="search-movie"]')
-
-const pagesUl = select('ul[data-js="pages"]')
+const movieSearchResult = select('[data-js="movie-search-result"]')
 
 ;(async () => {
 
     const user = await authUser.getUser()
-    UserExperiences.loadNavbar(user)
+    // UserExperiences.loadNavbar(user)
 
 })()
 
@@ -44,6 +45,8 @@ const posterPath = (imageLocation) =>
 
 function renderMovies(movies) {
 
+    movieSearchResult.replaceChildren()
+
     const renderMovie = movie => {
 
         const { id,
@@ -69,7 +72,7 @@ function renderMovies(movies) {
 
     const paginationSettings = (() => {
 
-        const moviesPerPage = 9
+        const moviesPerPage = 40
         const startPage = 1
         const totalPages = Math.ceil(moviesRendered.length / moviesPerPage)
 
@@ -80,6 +83,11 @@ function renderMovies(movies) {
         }
 
     })()
+
+    if(paginationSettings.moviesPerPage > moviesRendered.length) {
+        movieSearchResult.append(...moviesRendered)
+        return
+    }
 
     UserExperiences.createPagination({ ...paginationSettings, moviesRendered })
 }
@@ -94,7 +102,7 @@ async function searchMovie() {
 }
 
 searchMovieBtn.addEventListener('click', searchMovie)
-searchMovieBtn.dispatchEvent(new Event('click'))
+// searchMovieBtn.dispatchEvent(new Event('click'))
 
 // import { auth, db, apiKeyMovieDB } from './authAndRequests.js'
 // import { userNavbar, extractPropFromCurrentUser, updateUserInformation } from './userExperience.js'

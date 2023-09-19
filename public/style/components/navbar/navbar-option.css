@@ -1,0 +1,5 @@
+a[data-component-name="navbar-option"] {
+    color: var(--color4);
+    text-decoration: none;
+    margin: 0 10px;
+}

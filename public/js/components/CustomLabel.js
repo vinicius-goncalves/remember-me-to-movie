@@ -36,6 +36,6 @@ class CustomLabel extends HTMLElement {
     }
 }
 
-helper.defineElement(CustomLabel)
+helper.defineElement(CustomLabel, { extends: 'label' })
 
 export default CustomLabel
