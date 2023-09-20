@@ -1,6 +1,9 @@
-import AuthUser from './firebase/classes/AuthUser.js'
-import * as UserExperiences from './user-experiencies.js'
-import { select } from './utils.js'
+await import('../components/navbar/CustomNavbar.js')
+await import('../components/navbar/NavbarOption.js')
+
+import AuthUser from '../firebase/classes/AuthUser.js'
+import * as UserExperiences from '../user-experiencies.js'
+import { select } from '../utils.js'
 
 const authUser = new AuthUser()
 

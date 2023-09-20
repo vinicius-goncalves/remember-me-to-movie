@@ -1,5 +1,35 @@
 a[data-component-name="navbar-option"] {
     color: var(--color4);
     text-decoration: none;
-    margin: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+a[data-component-name="navbar-option"]:hover {
+    filter: brightness(90%);
+    position: relative;
+}
+
+a[data-component-name="navbar-option"]:hover::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    background-color: var(--color4);
+    filter: blur(50px);
+    z-index: -1;
+}
+
+a[data-component-name="navbar-option"] img {
+    max-width: 50px;
+    object-fit: cover;
+}
+
+a[data-component-name="navbar-option"] img[src*="icons"] {
+    max-width: 25px;
+    margin: 10px;
+
+    color: white;
 }

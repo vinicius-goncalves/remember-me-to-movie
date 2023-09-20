@@ -7,6 +7,8 @@ const helper = new ComponentSettings({
     cssHref: '../../style/components/navbar/navbar-option.css'
 })
 
+const parser = new DOMParser()
+
 class NavbarOption extends HTMLElement {
     constructor() {
         super()
@@ -28,7 +30,8 @@ class NavbarOption extends HTMLElement {
         a.setAttribute('data-component-name', 'navbar-option')
         a.setAttribute('data-if', ifAttr)
         a.setAttribute('href', toAttr)
-        a.textContent = [ self.textContent, self.textContent = ''][0]
+
+        a.append(...self.childNodes)
 
         const styleRef = document.createElement('style')
         self.styleRef = styleRef

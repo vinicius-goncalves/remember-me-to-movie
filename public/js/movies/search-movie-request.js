@@ -1,31 +1,3 @@
-await import('./components/navbar/CustomNavbar.js')
-await import('./components/navbar/NavbarOption.js')
-await import('./components/CustomInput.js')
-
-import AuthUser from './firebase/classes/AuthUser.js'
-import * as UserExperiences from './user-experiencies.js'
-import { select } from './utils.js'
-
-const authUser = new AuthUser()
-
-const movieToSearch = select('[data-js="movie-to-search"]')
-const searchMovieBtn = select('[data-btn="search-movie"]')
-const movieSearchResult = select('[data-js="movie-search-result"]')
-
-;(async () => {
-
-    const user = await authUser.getUser()
-    // UserExperiences.loadNavbar(user)
-
-})()
-
-const { poster, null_poster_path } = {
-    poster: 'https://image.tmdb.org/t/p/w500',
-    null_poster_path: 'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
-}
-
-const posterPath = (imageLocation) =>
-    imageLocation ? poster.concat('/', imageLocation) : null_poster_path
 
 //`<li data-li='${id}'>
 //                 <img src='${verifyImagePath}' class='movie-poster'>
@@ -42,66 +14,6 @@ const posterPath = (imageLocation) =>
 //                     </button>
 //                 </article>
 //             </li>`
-
-function renderMovies(movies) {
-
-    movieSearchResult.replaceChildren()
-
-    const renderMovie = movie => {
-
-        const { id,
-            title,
-            overview,
-            release_date,
-            poster_path
-        } = movie
-
-        const li = document.createElement('li')
-        li.dataset.movie = `wrapper-${id}`
-
-        const img = document.createElement('img')
-        img.dataset.movie = 'poster'
-        img.src = posterPath(poster_path)
-
-        li.append(img)
-
-        return li
-    }
-
-    const moviesRendered = movies.data.map(renderMovie)
-
-    const paginationSettings = (() => {
-
-        const moviesPerPage = 40
-        const startPage = 1
-        const totalPages = Math.ceil(moviesRendered.length / moviesPerPage)
-
-        return {
-            moviesPerPage,
-            startPage,
-            totalPages
-        }
-
-    })()
-
-    if(paginationSettings.moviesPerPage > moviesRendered.length) {
-        movieSearchResult.append(...moviesRendered)
-        return
-    }
-
-    UserExperiences.createPagination({ ...paginationSettings, moviesRendered })
-}
-
-async function searchMovie() {
-
-    const movie = movieToSearch.value
-    const res = await fetch(`http://localhost:8080/movies/${movie}`)
-    const movies = await res.json()
-
-    renderMovies(movies)
-}
-
-searchMovieBtn.addEventListener('click', searchMovie)
 // searchMovieBtn.dispatchEvent(new Event('click'))
 
 // import { auth, db, apiKeyMovieDB } from './authAndRequests.js'

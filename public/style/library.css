@@ -2,6 +2,7 @@
     Section that appears the movies result by searched term before
     ! This sections is for result container, when the user makes a search
  */
+
 #ul-movies-library {
     list-style-type: none;
     display: flex;

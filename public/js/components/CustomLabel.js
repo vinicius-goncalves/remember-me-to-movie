@@ -1,14 +1,9 @@
 import ComponentSettings from './ComponentSettings.js'
 import CustomInput from './CustomInput.js'
 
-const helperArgs = {
-    *[Symbol.iterator]() {
-        yield [this.componentName]
-    },
+const helper = new ComponentSettings({
     componentName: 'custom-label'
-}
-
-const helper = new ComponentSettings(...helperArgs)
+})
 
 class CustomLabel extends HTMLElement {
     constructor() {
@@ -21,7 +16,7 @@ class CustomLabel extends HTMLElement {
         customInput.dataset.type = 'email'
         // customInput.dataset.js = this.getAttribute('data-js')
         // customInput.dataset.type = this.getAttribute('label-title').toLowerCase()
-        
+
         label.setAttribute('data-label', 'wrapper')
         span.setAttribute('data-label', 'title')
 
@@ -36,6 +31,6 @@ class CustomLabel extends HTMLElement {
     }
 }
 
-helper.defineElement(CustomLabel, { extends: 'label' })
+helper.defineComponent(CustomLabel, { extends: 'label' })
 
 export default CustomLabel

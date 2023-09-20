@@ -27,18 +27,27 @@
         <a href="/html/register.html" data-js="logged-out" style="display: block;">Registrar</a>
     </div> -->
 
-    <custom-navbar data-js="navbar">
+    <custom-navbar>
+        <navbar-option if="logged-in" to="#">
+            <img src="/public/images/icons/home.png">
+            <span>
+                Home
+            </span>
+        </navbar-option>
         <navbar-option if="logged-in" to="./search-movies.html">
-            Search movie
+            <img src="/public/images/icons/search.png">
+            <span>
+                Search movie
+            </span>
         </navbar-option>
         <navbar-option if="logged-in" to="./library.html">
-            My library
+            <img src="/public/images/icons/library.png">
+            <span>
+                Library
+            </span>
         </navbar-option>
         <navbar-option if="logged-in" to="./profile.html">
-            My account
-        </navbar-option>
-        <navbar-option if="logged-in" to="#">
-            Logout
+            <img src="/public/images/user-photo-profile.png">
         </navbar-option>
     </custom-navbar>
 
@@ -69,24 +78,26 @@
         <div data-js="logged-in" id="loader-profile-image-container-navbar">
             <div id="loader-profile-navbar"></div>
         </div>
-        <img src="/public/images/user-photo-profile.png" data-js="logged-in" id="user-image-profile-navbar">
+        
     </nav> -->
 
-    <div data-js="form-search-container">
-        <input data-js="movie-to-search" type="search" placeholder="What do you want to search?" value="simpsons">
-        <input data-btn="search-movie" class="custom-btn" type="button" value="Pesquisar">
-    </div>
+    <main>
+        <div data-js="form-search-container">
+            <input data-js="movie-to-search" type="search" placeholder="What do you want to search?" value="simpsons">
+            <input data-btn="search-movie" class="custom-btn" type="button" value="Pesquisar">
+        </div>
 
-    <section>
-        <ul data-js="movie-search-result"></ul>
-    </section>
+        <section>
+            <ul data-js="movie-search-result"></ul>
+        </section>
 
-    <section style="display: none;">
-        <ul data-js="pagination"></ul>
-    </section>
+        <section style="display: none;">
+            <ul data-js="pagination"></ul>
+        </section>
+    </main>
     <!-- Scripts -->
     <!-- <script type="module" src="/js/authAndRequests.js"></script>
     <script type="module" src="/js/userExperience.js"></script>-->
-    <script type="module" src="/public/js/search-movie-request.js"></script>
+    <script type="module" src="/public/js/movies/control.js"></script>
 </body>
 </html>

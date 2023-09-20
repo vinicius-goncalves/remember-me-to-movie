@@ -1,6 +1,8 @@
 import FirebaseService from '../main.js'
 import { buildFirebaseSDKUrl, detailFirebaseAuthError } from '../../utils.js'
 
+import UserDB from './UserDB.js'
+
 const AUTH_URL = buildFirebaseSDKUrl('auth')
 
 const {
@@ -19,6 +21,11 @@ class AuthUser {
 
         return new Promise(resolve => {
             authStatus(this.#auth, (user) => {
+
+                if(!user) {
+                    UserDB.register()
+                }
+
                 resolve(user)
             })
         })

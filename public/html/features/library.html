@@ -9,7 +9,39 @@
     <link rel="stylesheet alternative" href="/public/style/template.css">
 </head>
 <body>
-    <nav data-js="navbar">
+
+    <custom-navbar>
+        <navbar-option if="logged-in" to="#">
+            <img src="/public/images/icons/home.png">
+            <span>
+                Home
+            </span>
+        </navbar-option>
+        <navbar-option if="logged-in" to="./search-movies.html">
+            <img src="/public/images/icons/search.png">
+            <span>
+                Search movie
+            </span>
+        </navbar-option>
+        <navbar-option if="logged-in" to="./library.html">
+            <img src="/public/images/icons/library.png">
+            <span>
+                Library
+            </span>
+        </navbar-option>
+        <navbar-option if="logged-in" to="./profile.html">
+            <img src="/public/images/user-photo-profile.png">
+        </navbar-option>
+    </custom-navbar>
+
+    <main>
+        <div class="user-information">
+            <h1>Informações</h1>
+            <p>A última vez que você adicionou um filme foi: <span class="last-date-movie-added"></span></p>
+        </div>
+    </main>
+
+    <!-- <nav data-js="navbar">
         <a data-navbar-btn="search-movie" href="./search-movies.html" data-js="logged-in">Buscar filme</a>
         <a href="./library.html" data-js="logged-in">Minha biblioteca</a>
         <a href="./profile.html" data-js="logged-in">Minha conta</a>
@@ -21,12 +53,7 @@
             <div id="loader-profile-navbar"></div>
         </div>
         <img src="/public/images/user-photo-profile.png" data-js="logged-in" id="user-image-profile-navbar">
-    </nav>
-
-    <div class="user-information">
-        <h1>Informações</h1>
-        <p>A última vez que você adicionou um filme foi: <span class="last-date-movie-added"></span></p>
-    </div>
+    </nav> -->
 
     <ul id="ul-movies-library">
         <!-- <li data-li="${value.id}">
@@ -37,7 +64,6 @@
         </li> -->
     </ul>
 
-    <script type="module" src="/public/js/library.js"></script>
-    <!-- <script src="https://kit.fontawesome.com/866e7f0be4.js" crossorigin="anonymous"></script> -->
+    <script type="module" src="/public/js/pages/library.js"></script>
 </body>
 </html>
