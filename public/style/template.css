@@ -23,7 +23,9 @@ body {
 }
 
 main {
-    margin: 150px auto calc(150px - (25px * 4));
+    position: relative;
+    margin-top: calc(100px + (15px * 2));
+    width: 100%;
 }
 
 .logged-in-overlay-wrap  {
@@ -121,9 +123,7 @@ main {
 .notification-icon {
     font-size: 23px;
     color: white;
-    
 }
-
 
 .notification-icon-wrap-number {
     position: absolute;
@@ -189,6 +189,12 @@ main {
 
     to {
         transform: rotate(360deg);
+    }
+}
+
+@media all and (width <= 600px) {
+    main {
+        margin: calc(200px + (15px * 2))
     }
 }
 

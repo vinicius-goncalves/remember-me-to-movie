@@ -31,7 +31,13 @@ class CustomInput extends HTMLElement {
         }
 
         const input = document.createElement('input')
+
+        if(this.getAttribute('data-value')) {
+            input.value = this.getAttribute('data-value')
+        }
+
         input.classList.add('custom-field')
+        input.setAttribute('style', this.getAttribute('style') || null)
         this.mainElement = input
 
         Array.of(['placeholder', placeholder], ['value', value]).forEach(([ attr, value ]) => {

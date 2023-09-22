@@ -15,7 +15,7 @@ async function getByName(req, res) {
         if(Number.parseInt(total_pages) <= 1) {
             res.status(200).json({
                 result_length: data.length,
-                data
+                data: data.results
             }).end()
             return
         }

@@ -15,12 +15,16 @@ nav[data-component-name="custom-navbar"] {
     overflow: hidden;
 }
 
-nav[data-component-name="custom-navbar"] * {
-    padding: 15px;
-}
-
-
 nav[data-component-name="custom-navbar"] img.profile-photo {
     width: 50px;
     object-fit: cover;
+}
+
+@media all and (width <= 600px) {
+
+    nav[data-component-name="custom-navbar"] {
+        max-height: 200px;
+        display: flex;
+        flex-direction: column;
+    }
 }

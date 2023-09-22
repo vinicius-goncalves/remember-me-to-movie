@@ -3,6 +3,7 @@ a[data-component-name="navbar-option"] {
     text-decoration: none;
     display: flex;
     align-items: center;
+    padding: 15px;
 }
 
 a[data-component-name="navbar-option"]:hover {
@@ -32,4 +33,17 @@ a[data-component-name="navbar-option"] img[src*="icons"] {
     margin: 10px;
 
     color: white;
+}
+
+@media all and (width <= 600px) {
+    
+    a[data-component-name="navbar-option"] {
+        font-size: .9rem;
+        padding: 5px;
+    }
+
+    a[data-component-name="navbar-option"] img[src*="icons"] {
+        max-width: 15px;
+        color: white;
+    }
 }

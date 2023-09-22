@@ -78,13 +78,18 @@
         <div data-js="logged-in" id="loader-profile-image-container-navbar">
             <div id="loader-profile-navbar"></div>
         </div>
-        
     </nav> -->
 
     <main>
         <div data-js="form-search-container">
-            <input data-js="movie-to-search" type="search" placeholder="What do you want to search?" value="simpsons">
-            <input data-btn="search-movie" class="custom-btn" type="button" value="Pesquisar">
+            <custom-input
+                data-js="movie-to-search"
+                data-type="text"
+                data-value="hack"
+                placeholder="What do you want to search?"
+                style="padding: 10px; font-size: 1.1rem; min-width: 40%;">
+            </custom-input>
+            <!-- <input data-js="movie-to-search" type="text" placeholder="What do you want to search?" value="simpsons"> -->
         </div>
 
         <section>
@@ -98,6 +103,6 @@
     <!-- Scripts -->
     <!-- <script type="module" src="/js/authAndRequests.js"></script>
     <script type="module" src="/js/userExperience.js"></script>-->
-    <script type="module" src="/public/js/movies/control.js"></script>
+    <script type="module" src="/public/js/movies/search.js"></script>
 </body>
 </html>

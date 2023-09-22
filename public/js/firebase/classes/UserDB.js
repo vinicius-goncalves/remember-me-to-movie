@@ -15,14 +15,14 @@ const {
 
 
 class UserDB {
-    
+
     static #db = FirebaseService.db
-    static #authUser = new AuthUser()
-    
+
     static async register() {
+
         try {
-            
-            const { uid } = await this.#authUser.getUser()
+
+            const { uid } = await AuthUser.getUser()
 
             const userDataRef = doc(this.#db, uid, 'user-data')
 
@@ -42,7 +42,7 @@ class UserDB {
 
         try {
 
-            const { uid } = await this.#authUser.getUser()
+            const { uid } = await AuthUser.getUser()
 
             const collRef = collection(this.#db, uid)
             const collFound = await getDocs(collRef)
@@ -64,7 +64,7 @@ class UserDB {
                 await UserDB.register()
             }
 
-            const { uid } = await this.#authUser.getUser()
+            const { uid } = await AuthUser.getUser()
 
             const docRef = doc(this.#db, uid, 'user-data')
             const docFound = await getDoc(docRef)
@@ -90,7 +90,6 @@ class UserDB {
 
     static async getId() {
         const res = await this.getDocSnapshot()
-        console.log(res)
         return res.ref.path
     }
 }

@@ -9,7 +9,7 @@ const movieSearchResult = select('[data-js="movie-search-result"]')
 
 ;(async () => {
 
-    const user = await authUser.getUser()
+    const user = await AuthUser.getUser()
     // UserExperiences.loadNavbar(user)
 
 })()
@@ -30,8 +30,6 @@ function renderMovies(movies) {
 
         const { id,
             title,
-            overview,
-            release_date,
             poster_path
         } = movie
 
@@ -42,14 +40,16 @@ function renderMovies(movies) {
         img.dataset.movie = 'poster'
         img.src = posterPath(poster_path)
 
-        li.append(img)
+        const span = document.createElement('span')
+        span.textContent = title
+
+        li.append(img, span)
 
         return li
     }
 
     const moviesRendered = movies.data.map(renderMovie)
 
-    
     const paginationSettings = (() => {
 
         const moviesPerPage = 40
@@ -68,7 +68,7 @@ function renderMovies(movies) {
         movieSearchResult.append(...moviesRendered)
         return moviesRendered
     }
-    
+
     UserExperiences.createPagination({ ...paginationSettings, moviesRendered })
     return moviesRendered
 }

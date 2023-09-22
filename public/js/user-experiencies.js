@@ -75,7 +75,7 @@ async function createPagination(paginationSettings) {
             .map(mapObj => mapObj.get(type))
 
         const icon = createIcon(iconType)
-        icon.classList.add('page-control')
+        icon.classList.add('page-control', type)
 
         paginationWrapper.insertAdjacentElement(positionType, icon)
 
@@ -97,11 +97,17 @@ async function createPagination(paginationSettings) {
     const renderPages = async () => {
 
         for(let i = start; i <= end; i++) {
+
             if(i <= 0) {
                 continue
             }
 
-            createPage(i, i == startPage)
+            const page = createPage(i, i == startPage)
+
+            page.onclick = () => createPagination({
+                ...paginationSettings,
+                startPage: i
+            })
         }
     }
 
@@ -114,15 +120,48 @@ async function createPagination(paginationSettings) {
             })
         }
 
+        if(startPage > halfGroupPages) {
+
+            const page = createPage(1)
+            page.classList.add('first-page')
+            page.onclick = () => createPagination({
+                ...paginationSettings,
+                startPage: 1
+            })
+
+            const separator = document.createElement('span')
+            separator.textContent = '...'
+            separator.style.color = 'white'
+
+            const firstPage = document.querySelector('.first-page')
+            firstPage.parentElement.insertBefore(separator, firstPage.nextElementSibling)
+        }
+
         renderPages()
 
         if(startPage < totalPages) {
+
+            if(startPage <= totalPages - halfGroupPages) {
+                const page = createPage(totalPages)
+                page.classList.add('last-page')
+            }
+
             createButton('next').onclick = () => createPagination({
                 ...paginationSettings,
                 startPage: ++startPage
             })
         }
 
+
+        if(startPage < totalPages - halfGroupPages) {
+
+            const separator = document.createElement('span')
+            separator.textContent = '...'
+            separator.style.color = 'white'
+
+            const lastPage = document.querySelector('.last-page')
+            lastPage.parentElement.insertBefore(separator, lastPage)
+        }
     })()
 
     ;(() => {
@@ -132,10 +171,10 @@ async function createPagination(paginationSettings) {
 
         movieSearchResult.append(...moviesRendered.slice(startIndex, endIndex))
 
-        document.documentElement.scrollTo({
-            top: (movieSearchResult.offsetTop - 25) - navbarWrapper.clientHeight,
-            behavior: 'smooth'
-        })
+        // document.documentElement.scrollTo({
+        //     top: (movieSearchResult.offsetTop - 25) - navbarWrapper.clientHeight,
+        //     behavior: 'smooth'
+        // })
 
     })()
 

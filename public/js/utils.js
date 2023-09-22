@@ -39,10 +39,11 @@ function createIcon(name) {
 function clearChildren(...elements) {
 
     if(elements.length === 1) {
-        const el = elements.at(0)
-        el.replaceChildren()
+        elements.at(0).replaceChildren()
         return
     }
+
+    elements.forEach(el => el.replaceChildren())
 }
 
 async function fetchAndLoadCSS(endpoint, component) {

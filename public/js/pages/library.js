@@ -5,19 +5,14 @@ import AuthUser from '../firebase/classes/AuthUser.js'
 import * as UserExperiences from '../user-experiencies.js'
 import { select } from '../utils.js'
 
-const authUser = new AuthUser()
-
 const searchMovieBtn = select('[data-navbar-btn="searchMovie"]')
-const signOutBtn = select('[data-navbar-btn="logged-out"]')
 
 ;(async () => {
 
-    const user = await authUser.getUser()
+    const user = await AuthUser.getUser()
     UserExperiences.loadNavbar(user)
 
 })()
-
-signOutBtn.addEventListener('click', () => authUser.signOutCurrentUser())
 
 // import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
 // import { doc, getDoc, deleteDoc, updateDoc, arrayRemove } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js"

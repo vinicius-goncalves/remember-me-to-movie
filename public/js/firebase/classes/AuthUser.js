@@ -13,11 +13,11 @@ const {
 
 class AuthUser {
 
-    #auth = FirebaseService.auth
+    static #auth = FirebaseService.auth
 
     constructor() {}
 
-    getUser() {
+    static getUser() {
 
         return new Promise(resolve => {
             authStatus(this.#auth, (user) => {
@@ -31,7 +31,7 @@ class AuthUser {
         })
     }
 
-    async invokeUserSignInProcess(email, pass) {
+    static async invokeUserSignInProcess(email, pass) {
         try {
             const userCredentials = createUser(this.#auth, email, pass)
             return { created: true, user: userCredentials }
@@ -43,7 +43,7 @@ class AuthUser {
         }
     }
 
-    async invokeUserLogInProcess(email, pass) {
+    static async invokeUserLogInProcess(email, pass) {
         try {
             const userCredentials = await emailSignIn(this.#auth, email, pass)
             return { logged: true, user: userCredentials }

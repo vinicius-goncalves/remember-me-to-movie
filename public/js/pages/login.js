@@ -10,11 +10,9 @@ forms.forEach(form => form.onsubmit = (event) => event.preventDefault())
 const loginBtn = select('[data-btn="login"]')
 const loginFields = select('custom-input[data-js="login-field"]')
 
-const authUser = new AuthUser()
-
 ;(async () => {
 
-    const user = await authUser.getUser()
+    const user = await AuthUser.getUser()
 
     if(user) {
         const libraryPath = '/public/html/features/library.html'

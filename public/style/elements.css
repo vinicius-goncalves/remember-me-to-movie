@@ -1,6 +1,6 @@
 input[type="button"].custom-btn,
 input[type="submit"].custom-btn {
-    padding: 7px;
+    padding: 15px;
     border-radius: 5px;
     background-color: var(--color3);
     color: var(--color4);
@@ -12,6 +12,7 @@ input[type="submit"].custom-btn {
 input[type="password"].custom-field,
 input[type="email"].custom-field,
 input[type="text"].custom-field {
+    width: 100%;
     padding: 7px;
     border: 1px solid var(--gray0);
     border-radius: 7px;

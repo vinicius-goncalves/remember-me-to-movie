@@ -1,3 +1,7 @@
+/* .added-movie {
+    border: 2px solid blue;
+} */
+
 body {
     position: relative;
     display: flex;
@@ -6,33 +10,22 @@ body {
 }
 
 [data-js="form-search-container"] {
+    position: relative;
     display: flex;
-    justify-content: center;
-    min-width: 100vw;
-    margin: 10px;
-}
-
-[data-js="form-search-container"] [data-js="movie-to-search"] {
-    border-radius: 5px;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 10px;
-    padding: 10px;
-    background-color: var(--color1);
-    border: none;
-    outline: none;
-    color: white;
-    font-size: x-large;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
-section:has(ul[data-js="movie-search-result"]) {
-    min-width: 90vw;
+[data-js="form-search-container"] img.search-icon {
+    position: absolute;
+    z-index: 1;
+    width: 25px;
 }
 
 ul[data-js="movie-search-result"] {
-    flex-grow: 1;
-    flex-basis: 100%;
+    margin: calc(15px * 4);
     list-style-type: none;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -42,6 +35,7 @@ ul[data-js="movie-search-result"] {
 }
 
 ul[data-js="movie-search-result"] li[data-movie|="wrapper"] {
+    position: relative;
     max-height: 250px;
     border-radius: 5px;
     margin: 5px;
@@ -58,15 +52,46 @@ ul[data-js="movie-search-result"] li[data-movie|="wrapper"] img {
     object-position: top;
 }
 
+ul[data-js="movie-search-result"] li[data-movie|="wrapper"] span {
+    display: none;
+    width: 100%;
+    position: absolute;
+    color: #fff;
+    z-index: 1;
+    left: 50%;
+    translate: -50%;
+    text-align: left;
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: .75rem;
+    bottom: 5%;
+}
+
+ul[data-js="movie-search-result"] li[data-movie|="wrapper"] span::before {
+    content: "";
+    position: absolute;
+    min-width: 250px;
+    min-height: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    filter: blur(20px) contrast(90%);
+    z-index: -1;
+}
+
 ul[data-js="movie-search-result"] li[data-movie|="wrapper"]:hover {
     transform: scale(1.1);
     border: 1.5px solid var(--color1);
 }
 
+ul[data-js="movie-search-result"] li[data-movie|="wrapper"]:hover span {
+    display: inline-block;
+}
+
 section:has([data-js="pagination"]) {
     display: flex;
-    position: sticky;
-    bottom: 0;
+    position: fixed;
+    bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -120,6 +145,11 @@ ul[data-js="pagination"] .page-active {
 ul[data-js="pagination"] li.page {
     color: var(--color4);
     margin: 0 10px;
+}
+
+ul[data-js="pagination"] li.page:hover {
+    cursor: pointer;
+    color: var(--gray0);
 }
 
 @media screen and (max-width: 700px) {
