@@ -1,5 +1,5 @@
-await import('../components/CustomInput.js')
-await import('../components/CustomLabel.js')
+await import('../components/elements/CustomInput.js')
+await import('../components/elements/CustomLabel.js')
 
 import AuthUser from '../firebase/classes/AuthUser.js'
 import { select } from '../utils.js'

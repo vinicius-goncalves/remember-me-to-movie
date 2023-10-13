@@ -15,10 +15,7 @@ class AuthUser {
 
     static #auth = FirebaseService.auth
 
-    constructor() {}
-
     static getUser() {
-
         return new Promise(resolve => {
             authStatus(this.#auth, (user) => {
 

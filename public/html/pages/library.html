@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Library | Remember me to movie</title>
+        <link rel="stylesheet" href="/public/style/library.css">
+        <link rel="stylesheet alternative" href="/public/style/template.css">
+    </head>
+    <body>
+
+        <custom-navbar>
+            <navbar-option if="logged-in" to="#">
+                <img src="/public/images/icons/home.png">
+                <span>
+                    Home
+                </span>
+            </navbar-option>
+            <navbar-option if="logged-in" to="./search-movies.html">
+                <img src="/public/images/icons/search.png">
+                <span>
+                    Search movie
+                </span>
+            </navbar-option>
+            <navbar-option if="logged-in" to="./library.html">
+                <img src="/public/images/icons/library.png">
+                <span>
+                    Library
+                </span>
+            </navbar-option>
+            <navbar-option if="logged-in" to="./profile.html">
+                <img src="/public/images/user-photo-profile.png">
+            </navbar-option>
+        </custom-navbar>
+
+        <!-- <main>
+            <div class="user-information">
+                <h1>Information</h1>
+                <p>A última vez que você adicionou um filme foi: <span class="last-date-movie-added"></span></p>
+            </div>
+        </main> -->
+
+        <!-- <nav data-js="navbar">
+            <a data-navbar-btn="search-movie" href="./search-movies.html" data-js="logged-in">Buscar filme</a>
+            <a href="./library.html" data-js="logged-in">Minha biblioteca</a>
+            <a href="./profile.html" data-js="logged-in">Minha conta</a>
+            <a data-navbar-btn="logged-out" data-js="logged-out logged-in" href="#">Sair</a>
+            <a href="/html/login.html" data-js="logged-out">Entrar</a>
+            <a href="/html/register.html" data-js="logged-out">Registrar</a>
+
+            <div data-js="logged-in" id="loader-profile-image-container-navbar">
+                <div id="loader-profile-navbar"></div>
+            </div>
+            <img src="/public/images/user-photo-profile.png" data-js="logged-in" id="user-image-profile-navbar">
+        </nav> -->
+
+        <ul id="ul-movies-library">
+            <!-- <li data-li="${value.id}">
+                <div class="movie-informations">
+                    <img src="https://image.tmdb.org/t/p/w500/2WIwz0qJpnVAiofTAhrmhbKxuvE.jpg" class="movie-poster">
+                    <i class="fas fa-trash" data-remove="${remove}"></i>
+                </div>
+            </li> -->
+        </ul>
+
+        <script type="module" src="/public/js/pages/library.js"></script>
+    </body>
+</html>

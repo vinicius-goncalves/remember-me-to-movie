@@ -1,0 +1,74 @@
+li[data-movie="wrapper"] {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 200ms;
+    background-color: var(--color0);
+    transition: scale 200ms;
+    box-shadow: 5px 5px 15px #0d0d0d44;
+    border: 1px solid #ffffff0b;
+    padding: 5px;
+    transition: transform 200ms;
+}
+
+li[data-movie="wrapper"]:hover {
+    transform: scale(1.05);
+}
+
+button[data-movie="favorite-button"] {
+    background-color: transparent;
+    outline: none;        
+    border: none;
+    color: #FFFFFF;
+    background-color: #0d0d0d6f;
+    border-radius: 50%;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    transition: opacity 200ms;
+    border: 1px solid #FFFFFF;
+}
+
+button[data-movie="favorite-button"]:hover {
+    cursor: pointer; opacity: .7;
+}
+
+button[data-movie="favorite-button"] img.favorite-icon {
+    width: 15px;
+}
+
+li[data-movie="wrapper"] img[data-movie="poster"] {
+    width: 100%;
+    max-height: 80%;
+    border-radius: 10px;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+li[data-movie="wrapper"] section[data-movie="details"] {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+section[data-movie="details"] span {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+section[data-movie="details"] span[data-movie="release-date"] {
+    color: var(--color1);
+    font-weight: bold;
+    font-size: .8rem;
+}
+
+section[data-movie="details"] span[data-movie="name"] {
+    color: #FFFFFF;
+    font-size: .9rem;
+}

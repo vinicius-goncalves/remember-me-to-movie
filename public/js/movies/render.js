@@ -1,26 +1,22 @@
-import AuthUser from '../firebase/classes/AuthUser.js'
-import * as UserExperiences from '../user-experiencies.js'
-import { select } from '../utils.js'
+import { default as Movie } from '../components/elements/MovieElement.js'
 
-const authUser = new AuthUser()
+import createPages from '../features/pagination.js'
+import { select } from '../features/utils.js'
 
+const movieSearchResult = select('ul[data-js="movie-search-result"]')
+const pagesUl = select('ul[data-js="pagination"]')
 
-const movieSearchResult = select('[data-js="movie-search-result"]')
-
-;(async () => {
-
-    const user = await AuthUser.getUser()
-    // UserExperiences.loadNavbar(user)
-
-})()
-
-const { poster, null_poster_path } = {
-    poster: 'https://image.tmdb.org/t/p/w500',
-    null_poster_path: 'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
+function getPoster(imageLocation) {
+    return `https://image.tmdb.org/t/p/w500/${imageLocation}`
 }
 
-const posterPath = (imageLocation) =>
-    imageLocation ? poster.concat('/', imageLocation) : null_poster_path
+function formatDate(date, options = {}) {
+
+    const language = navigator.language
+    const formatter = new Intl.DateTimeFormat(language, options)
+
+    return formatter.format(new Date(date))
+}
 
 function renderMovies(movies) {
 
@@ -28,48 +24,30 @@ function renderMovies(movies) {
 
     const renderMovie = movie => {
 
-        const { id,
-            title,
-            poster_path
-        } = movie
+        const { id, title, poster_path, release_date } = movie
 
-        const li = document.createElement('li')
-        li.dataset.movie = `wrapper-${id}`
+        const movieElement = new Movie({
+            id,
+            title: title.length > 32 ? title.slice(0, 32).concat('...') : title,
+            poster_path: getPoster(poster_path),
+            release_date: !release_date
+                ? 'Not found'
+                : formatDate(release_date, { year: 'numeric' })
+        })
 
-        const img = document.createElement('img')
-        img.dataset.movie = 'poster'
-        img.src = posterPath(poster_path)
-
-        const span = document.createElement('span')
-        span.textContent = title
-
-        li.append(img, span)
-
-        return li
+        return movieElement
     }
 
     const moviesRendered = movies.data.map(renderMovie)
 
-    const paginationSettings = (() => {
-
-        const moviesPerPage = 40
-        const startPage = 1
-        const totalPages = Math.ceil(moviesRendered.length / moviesPerPage)
-
-        return {
-            moviesPerPage,
-            startPage,
-            totalPages
-        }
-
-    })()
-
-    if(paginationSettings.moviesPerPage > moviesRendered.length) {
-        movieSearchResult.append(...moviesRendered)
-        return moviesRendered
+    const paginationSettings = {
+        itemsPerPage: 25,
+        startPage: 1,
+        items: moviesRendered
     }
 
-    UserExperiences.createPagination({ ...paginationSettings, moviesRendered })
+    createPages(paginationSettings, pagesUl, movieSearchResult)
+
     return moviesRendered
 }
 

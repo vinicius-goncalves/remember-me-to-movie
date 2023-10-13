@@ -1,13 +1,11 @@
 import ComponentSettings from '../ComponentSettings.js'
 
-import * as Utils from '../../utils.js'
+import * as Utils from '../../../features/utils.js'
 
 const helper = new ComponentSettings({
     componentName: 'navbar-option',
-    cssHref: '../../style/components/navbar/navbar-option.css'
+    cssHref: '../../js/components/style/navbar/navbar-option.css'
 })
-
-const parser = new DOMParser()
 
 class NavbarOption extends HTMLElement {
     constructor() {

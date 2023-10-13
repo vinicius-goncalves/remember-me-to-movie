@@ -62,11 +62,49 @@ async function fetchAndLoadCSS(endpoint, component) {
     }
 }
 
+async function fetchTemplate(endpoint) {
+
+    return new Promise(resolve => {
+
+        const xhr = new XMLHttpRequest()
+
+        xhr.addEventListener('load', (event) => {
+            const res = event.target.response
+            const template = res.querySelector('template')
+            resolve(template)
+        })
+
+        xhr.responseType = 'document'
+        xhr.open('GET', endpoint)
+        xhr.send()
+    })
+}
+
+function loadNavbar(user) {
+
+    const navbarChildren = [...navbarWrapper.children]
+
+    const hideOrShowEl = el => user && el.dataset.js.includes('logged-in')
+        ? { show: true, el }
+        : { show: false, el }
+
+    const hideOrShowElSideEffect = elOption => {
+        const { show, el } = elOption
+        el.style.setProperty('display', show ? 'block' : 'none')
+    }
+
+    navbarChildren
+        .map(hideOrShowEl)
+        .forEach(hideOrShowElSideEffect)
+}
+
 export {
     buildFirebaseSDKUrl,
     detailFirebaseAuthError,
     select,
     createIcon,
     clearChildren,
-    fetchAndLoadCSS
+    fetchAndLoadCSS,
+    fetchTemplate,
+    loadNavbar
 }

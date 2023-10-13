@@ -1,5 +1,5 @@
-await import('../components/navbar/CustomNavbar.js')
-await import('../components/navbar/NavbarOption.js')
+await import('../components/elements/navbar/CustomNavbar.js')
+await import('../components/elements/navbar/NavbarOption.js')
 
 import AuthUser from '../firebase/classes/AuthUser.js'
 import * as UserExperiences from '../user-experiencies.js'

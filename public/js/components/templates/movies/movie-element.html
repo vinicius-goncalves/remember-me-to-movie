@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <template data-template="movie-element">
+            <li data-movie="wrapper">
+                <button data-movie="favorite-button" type="button">
+                    <img
+                        class="favorite-icon"
+                        src="/public/images/icons/favorite.png">
+                </button>
+                <img data-movie="poster">
+                <section data-movie="details">
+                    <span data-movie="release-date"></span>
+                    <span data-movie="name"></span>
+                </section>
+            </li>
+        </template>
+        <script src="../../elements/movies/MovieElement.js"></script>
+    </body>
+</html>

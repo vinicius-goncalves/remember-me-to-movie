@@ -1,15 +1,14 @@
-import * as Utils from '../utils.js'
-
 class ComponentSettings {
 
-    constructor({ componentName, validTypes, cssHref, errorMessages, id }) {
+    constructor({ componentName, validTypes, cssHref, errorMessages, templateHref }) {
         this.componentName = componentName
         this.validTypes = validTypes
         this.cssRef = cssHref
         this.errorMessages = errorMessages
+        this.templateHref = templateHref
     }
 
-    defineComponent(component) {
+    defineComponent(component, settings = {}) {
 
         if(!this.componentName) {
             throw new Error('The component name must not be empty.')
@@ -22,7 +21,7 @@ class ComponentSettings {
 
         try {
 
-            const defineOptions = [this.componentName, component]
+            const defineOptions = [this.componentName, component, settings]
             customElements.define(...defineOptions)
 
         } catch (err) {

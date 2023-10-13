@@ -77,6 +77,6 @@ class CustomInput extends HTMLElement {
     }
 }
 
-helper.defineComponent(CustomInput, { extends: 'input' })
+helper.defineComponent(CustomInput)
 
 export default CustomInput

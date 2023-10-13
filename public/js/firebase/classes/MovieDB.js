@@ -52,16 +52,21 @@ class MovieDB {
             const exists = await this.exists(movieId)
 
             if(exists) {
-                return await this.get(movieId)
+                const movie = await this.get(movieId)
+                return { exists: true, added: false, data: movie }
             }
 
             const userId = await UserDB.getId()
 
             const docRef = doc(MovieDB.#db, userId, 'movies', movieId)
-            setDoc(docRef, {
+            const docToAdd = {
                 movie_id: movieId,
                 added_time: serverTimestamp()
-            })
+            }
+
+            await setDoc(docRef, docToAdd)
+
+            return { exists: false, added: true, data: docToAdd }
 
         } catch(err) {
             console.log(err)

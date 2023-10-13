@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/public/style/elements.css">
+        <link rel="stylesheet" href="/public/style/template.css">
+        <link rel="stylesheet" href="/public/style/search-movie.css">
+        <title>Search a movie | Remember me to movie</title>
+    </head>
+    <body>
+
+        <custom-navbar>
+            <navbar-option if="logged-in" to="#">
+                <img src="/public/images/icons/home.png">
+                <span>
+                    Home
+                </span>
+            </navbar-option>
+            <navbar-option if="logged-in" to="./search-movies.html">
+                <img src="/public/images/icons/search.png">
+                <span>
+                    Search movie
+                </span>
+            </navbar-option>
+            <navbar-option if="logged-in" to="./library.html">
+                <img src="/public/images/icons/library.png">
+                <span>
+                    Library
+                </span>
+            </navbar-option>
+            <navbar-option if="logged-in" to="./profile.html">
+                <img src="/public/images/user-photo-profile.png">
+            </navbar-option>
+        </custom-navbar>
+
+        <main>
+            <div data-container="search-movie">
+                <custom-input
+                    data-js="movie-to-search"
+                    data-type="text"
+                    data-value="simpsons"
+                    placeholder="What do you want to search?"
+                    style="padding: 10px; font-size: 1.1rem; min-width: 40%;">
+                </custom-input>
+            </div>
+
+            <section data-wrapper="movie-search-result">
+                <ul data-js="movie-search-result"></ul>
+            </section>
+
+            <section data-wrapper="pagination">
+                <ul data-js="pagination"></ul>
+            </section>
+        </main>
+
+        <script type="module" src="/public/js/movies/search.js"></script>
+
+    </body>
+</html>
