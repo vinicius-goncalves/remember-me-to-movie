@@ -2,91 +2,58 @@ await import('../components/elements/CustomInput.js')
 await import('../components/elements/CustomLabel.js')
 
 import AuthUser from '../firebase/classes/AuthUser.js'
-import { select } from '../utils.js'
-
-const forms = Array.of(...document.forms)
-forms.forEach(form => form.onsubmit = (event) => event.preventDefault())
+import { select, selectAll } from '../features/utils.js'
 
 const loginBtn = select('[data-btn="login"]')
-const loginFields = select('custom-input[data-js="login-field"]')
-
-;(async () => {
-
-    const user = await AuthUser.getUser()
-
-    if(user) {
-        const libraryPath = '/public/html/features/library.html'
-        window.location.assign(libraryPath)
-    }
-
-})()
+const loginFields = selectAll('custom-label[data-js="login-field"]')
 
 async function startLogin() {
 
+    const inputs = loginFields.map(field => {
+        const input = field.shadowRoot.querySelector('custom-input')
+        return input
+    })
+
     const fieldsToObject = field => {
-        const key = field.dataset.type
+        const key = field.dataset.id
         const value = field.dataset.value
         return ({ key, value })
     }
 
     const unifyFields = (acc, { key, value }) => ({ ...acc, [key]: value })
 
-    const { email, password } = [...loginFields]
+    const { email, password } = inputs
         .map(fieldsToObject)
         .reduce(unifyFields, {})
 
     try {
 
-        await authUser.invokeUserLogInProcess(email, password)
+        // await AuthUser.invokeUserLogInProcess(email, password)
 
-        const libraryPath = '/public/html/features/library.html'
-        window.location.assign(libraryPath)
+        // const libraryPath = '/public/html/features/library.html'
+        // window.location.assign(libraryPath)
 
     } catch(err) {
         console.log(err)
     }
-
 }
 
 loginBtn.addEventListener('click', startLogin)
 
-// import { auth, provider } from './authAndRequests.js'
-// import { userNavbar } from '../userExperience.js'
-// import {
-//     signOut,
-//     onAuthStateChanged,
-//     signInWithEmailAndPassword,
-//     signInWithRedirect } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
+function preventAllForms() {
+    const forms = Array.of(...document.forms)
+    forms.forEach(form => form.onsubmit = (event) => event.preventDefault())
+}
 
-// const loginContainer = document.querySelector('[data-js="login-container"]')
-// const navbarContainer = document.querySelector('[data-js="nav-bar"]')
-// const loginWithGoogleButton = document.querySelector('#login-with-google')
+async function redirectLoggedUser() {
 
-// loginContainer.addEventListener('submit', (event) => {
-//     event.preventDefault()
-//     const email = event.target.email.value
-//     const password = event.target.password.value
+    const user = await AuthUser.getUser()
 
-//     signInWithEmailAndPassword(auth, email, password).then(() => {
-//         window.location = './pages/profile.html'
-//     })
-// })
+    if(user) {
+        const libraryPath = '/public/html/pages/library.html'
+        window.location.assign(libraryPath)
+    }
+}
 
-// navbarContainer.addEventListener('click', (event) => {
-//     if(event.target.dataset.logout) {
-//         signOut(auth)
-//     }
-// })
-
-// loginWithGoogleButton.addEventListener('click', () => {
-//     signInWithRedirect(auth, provider)
-// })
-
-// onAuthStateChanged(auth, (user) => {
-//     if(user) {
-//         userNavbar(user)
-//     } else {
-//         userNavbar(user)
-//     }
-// })
-
+preventAllForms()
+// redirectLoggedUser()

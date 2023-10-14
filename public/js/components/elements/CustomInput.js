@@ -1,79 +1,40 @@
 import ComponentSettings from './ComponentSettings.js'
 
-const helper = new ComponentSettings(
-    {
-        componentName: 'custom-input',
-        validTypes: ['text', 'email', 'password'],
-        errorMessages: {
-            UNDEFINED_TYPE: 'You must specify at least the input type.',
-            INVALID_TYPE: (type) => `The type "${type}" is not accept.`
-        }
-    }
-)
+const helper = new ComponentSettings({
+    componentName: 'custom-input',
+    cssHref: '../../js/components/style/custom-input.css'
+})
 
 class CustomInput extends HTMLElement {
-
-    constructor() {
+    constructor(type, id) {
         super()
 
-        const [ type, placeholder, value ] = Array.of(
-            [this.getAttribute('data-type'), 'text'],
-            [this.getAttribute('placeholder'), ''],
-            [this.getAttribute('value'), '']
-        ).map(([ el, defaultValue ]) => !el ? defaultValue : el)
+        const self = this
+        const shadowRoot = self.attachShadow({ mode: 'open' })
 
-        if(!type) {
-            throw new Error(helper.errorMessages.UNDEFINED_TYPE)
-        }
-
-        if(!helper.validTypes.includes(type)) {
-            throw new Error(helper.errorMessages.INVALID_TYPE(type))
-        }
-
+        const inputType = self.getAttribute('type') || type
         const input = document.createElement('input')
+        input.type = inputType
 
-        if(this.getAttribute('data-value')) {
-            input.value = this.getAttribute('data-value')
-        }
+        self.input = input
+        self.dataset.id = id
 
-        input.classList.add('custom-field')
-        input.setAttribute('style', this.getAttribute('style') || null)
-        this.mainElement = input
-
-        Array.of(['placeholder', placeholder], ['value', value]).forEach(([ attr, value ]) => {
-
-            if(!value) {
-                return
-            }
-
-            input.setAttribute(attr, value)
-        })
-
-        this.appendChild(input)
+        shadowRoot.appendChild(input)
     }
 
     connectedCallback() {
 
-        const selfEl = this
-        const input = selfEl.mainElement
+        const self = this
+        const shadowRoot = self.shadowRoot
 
-        if(!selfEl.isConnected) {
-            return
+        const captureValue = (event) => {
+            const value = event.target.value
+            self.dataset.value = value
         }
 
-        input.type = selfEl.getAttribute('data-type')
+        self.input.addEventListener('input', captureValue)
 
-        selfEl.addEventListener('input', (event) => {
-
-            const value = String(event.target.value)
-
-            if(value.length === 0) {
-                selfEl.removeAttribute('data-value')
-                return
-            }
-
-            selfEl.setAttribute('data-value', value)
-        })
+        helper.defineStyle(shadowRoot)
     }
 }
 

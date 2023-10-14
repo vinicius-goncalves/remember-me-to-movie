@@ -1,11 +1,22 @@
 class ComponentSettings {
 
     constructor({ componentName, validTypes, cssHref, errorMessages, templateHref }) {
+
         this.componentName = componentName
         this.validTypes = validTypes
         this.cssRef = cssHref
         this.errorMessages = errorMessages
         this.templateHref = templateHref
+    }
+
+    defineStyle(shadowRoot) {
+        const styleLink = document.createElement('link')
+        styleLink.rel = 'stylesheet'
+        styleLink.href = this.cssRef
+        styleLink.type = 'text/css'
+        if(shadowRoot instanceof ShadowRoot) {
+            shadowRoot.prepend(styleLink)
+        }
     }
 
     defineComponent(component, settings = {}) {

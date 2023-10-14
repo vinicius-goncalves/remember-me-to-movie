@@ -2,17 +2,17 @@ await import('../components/elements/navbar/CustomNavbar.js')
 await import('../components/elements/navbar/NavbarOption.js')
 
 import AuthUser from '../firebase/classes/AuthUser.js'
-import * as UserExperiences from '../user-experiencies.js'
-import { select } from '../utils.js'
+import loadNavbar from '../features/navbar.js'
+import { select } from '../features/utils.js'
 
 const searchMovieBtn = select('[data-navbar-btn="searchMovie"]')
 
-;(async () => {
+// ;(async () => {
 
-    const user = await AuthUser.getUser()
-    UserExperiences.loadNavbar(user)
+//     const user = await AuthUser.getUser()
+//     loadNavbar(user)
 
-})()
+// })()
 
 // import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
 // import { doc, getDoc, deleteDoc, updateDoc, arrayRemove } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js"

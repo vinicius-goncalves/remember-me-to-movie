@@ -1,6 +1,6 @@
 import { select } from './utils.js'
 
-const navbarWrapper = select('[data-js="navbar"]')
+const navbarWrapper = select('[data-component-name="custom-navbar"]')
 
 function loadNavbar(user) {
 

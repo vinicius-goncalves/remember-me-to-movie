@@ -1,9 +1,4 @@
-:is(custom-label, input[type="submit"]) {
-    width: 75%;
-}
-
 div:is(.inputs-wrapper, .buttons-wrapper) {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +14,7 @@ body {
 }
 
 main.main-content {
-    max-width: calc(100vw - 45%);
+    max-width: calc(100vw - 25%);
     min-height: 60vh;
     border-radius: 10px;
     display: flex;
@@ -66,30 +61,6 @@ section.form form[data-js="login-container"] {
     width: 100%;
 }
 
-custom-label label[data-label="wrapper"] {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    color: var(--color4);
-}
-
-custom-label label[data-label="wrapper"] > span[data-label="title"] {
-    margin: 5px 0;
-}
-
-custom-input input {
-    width: 100%;
-}
-
-input[type="submit"] {
-    padding: 10px;
-    border-radius: 7px;
-}
-
-input[type="submit"]:hover {
-    cursor: pointer;
-}
-
 .or {
     display: inline-block;
     color: var(--color4);
@@ -112,6 +83,11 @@ input[type="submit"]:hover {
 .or::after { left: 100%; }
 
 @media screen and (max-width: 730px) {
+
+    div:is(.inputs-wrapper, .buttons-wrapper) {
+        word-break: break-all;
+        text-align: center;
+    }
 
     header {
         font-size: .8rem;
@@ -136,6 +112,6 @@ input[type="submit"]:hover {
     }
 
     img.login-with-google {
-        width: 100%;
+        width: 150px;
     }
 }

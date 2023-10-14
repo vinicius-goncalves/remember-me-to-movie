@@ -1,4 +1,4 @@
-import { buildFirebaseSDKUrl } from '../utils.js'
+import { buildFirebaseSDKUrl } from '../features/utils.js'
 
 const API_URL = 'http://localhost:8080/firebase'
 

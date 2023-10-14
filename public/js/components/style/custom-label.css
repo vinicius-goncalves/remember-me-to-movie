@@ -1,0 +1,17 @@
+label[data-label="wrapper"] {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    color: var(--color4);
+}
+
+label[data-label="wrapper"] > span[data-label="title"] {
+    margin: 5px 0;
+}
+
+@media screen and (max-width: 800px) {
+    label[data-label="wrapper"] {
+        width: 100%;
+    }
+}

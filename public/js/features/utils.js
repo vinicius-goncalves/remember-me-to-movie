@@ -29,6 +29,13 @@ function select(selector) {
     }
 }
 
+function selectAll(selector) {
+    const elsFound = document.querySelectorAll(selector)
+    return [...elsFound]
+    // const allElsMatch = [...elsFound].some(el => !el.matches(selector))
+    // return allElsMatch ? elsFound : -1
+}
+
 function createIcon(name) {
     const icon = document.createElement('span')
     icon.classList.add('material-symbols-outlined')
@@ -80,31 +87,13 @@ async function fetchTemplate(endpoint) {
     })
 }
 
-function loadNavbar(user) {
-
-    const navbarChildren = [...navbarWrapper.children]
-
-    const hideOrShowEl = el => user && el.dataset.js.includes('logged-in')
-        ? { show: true, el }
-        : { show: false, el }
-
-    const hideOrShowElSideEffect = elOption => {
-        const { show, el } = elOption
-        el.style.setProperty('display', show ? 'block' : 'none')
-    }
-
-    navbarChildren
-        .map(hideOrShowEl)
-        .forEach(hideOrShowElSideEffect)
-}
-
 export {
     buildFirebaseSDKUrl,
     detailFirebaseAuthError,
     select,
+    selectAll,
     createIcon,
     clearChildren,
     fetchAndLoadCSS,
-    fetchTemplate,
-    loadNavbar
+    fetchTemplate
 }

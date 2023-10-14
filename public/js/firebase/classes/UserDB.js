@@ -1,5 +1,7 @@
 import FirebaseService from '../main.js'
-import { buildFirebaseSDKUrl } from '../../utils.js'
+import {
+    buildFirebaseSDKUrl
+} from '../../features/utils.js'
 import AuthUser from './AuthUser.js'
 
 const FIRESTORE_URL = buildFirebaseSDKUrl('firestore')

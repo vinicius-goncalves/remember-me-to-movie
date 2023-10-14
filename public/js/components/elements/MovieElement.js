@@ -4,7 +4,7 @@ import * as Utils from '../../features/utils.js'
 
 const helper = new ComponentSettings({
     componentName: 'movie-element',
-    cssHref: '../../js/components/style/movies/movie-element.css',
+    cssHref: '../../js/components/style/movie-element.css',
     templateHref: '../../js/components/templates/movies/movie-element.html'
 })
 
@@ -40,9 +40,9 @@ class MovieElement extends HTMLElement {
         const templateContent = template.content
         const templateCloned = templateContent.cloneNode(true)
 
-        const linkStyle = document.createElement('link')
-        linkStyle.setAttribute('rel', 'stylesheet')
-        linkStyle.setAttribute('href', helper.cssRef)
+        const styleLink = document.createElement('link')
+        styleLink.setAttribute('rel', 'stylesheet')
+        styleLink.setAttribute('href', helper.cssRef)
 
         const [ liWrapper, details ] = wrappersSelector
             .map(selector => templateCloned.querySelector(selector))
@@ -64,7 +64,7 @@ class MovieElement extends HTMLElement {
         movieName.appendChild(movieNameText)
         movieReleaseDate.appendChild(releaseDate)
 
-        shadowRoot.append(linkStyle, templateCloned)
+        shadowRoot.append(styleLink, templateCloned)
     }
 }
 

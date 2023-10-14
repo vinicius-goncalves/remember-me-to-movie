@@ -1,5 +1,8 @@
 import FirebaseService from '../main.js'
-import { buildFirebaseSDKUrl, detailFirebaseAuthError } from '../../utils.js'
+import {
+    buildFirebaseSDKUrl,
+    detailFirebaseAuthError
+ } from '../../features/utils.js'
 
 import UserDB from './UserDB.js'
 
