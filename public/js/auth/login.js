@@ -28,10 +28,10 @@ async function startLogin() {
 
     try {
 
-        // await AuthUser.invokeUserLogInProcess(email, password)
+        await AuthUser.invokeUserLogInProcess(email, password)
 
-        // const libraryPath = '/public/html/features/library.html'
-        // window.location.assign(libraryPath)
+        const libraryPath = '/public/html/features/library.html'
+        window.location.assign(libraryPath)
 
     } catch(err) {
         console.log(err)
