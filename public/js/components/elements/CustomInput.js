@@ -9,12 +9,19 @@ class CustomInput extends HTMLElement {
     constructor(type, id) {
         super()
 
+
         const self = this
+        console.log(self)
+        const selfData = self.dataset
+
         const shadowRoot = self.attachShadow({ mode: 'open' })
 
-        const inputType = self.getAttribute('type') || type
+        const inputType = self.getAttribute('data-type') || type
+        const dataButton = self.getAttribute('data-button') || selfData.button
+
         const input = document.createElement('input')
         input.type = inputType
+        input.dataset.button = dataButton
 
         self.input = input
         self.dataset.id = id

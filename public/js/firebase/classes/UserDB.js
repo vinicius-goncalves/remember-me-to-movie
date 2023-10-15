@@ -90,6 +90,16 @@ class UserDB {
         }
     }
 
+    static async getDocsFromCollection(coll) {
+
+        const { uid } = await AuthUser.getUser()
+
+        const collRef = collection(this.#db, uid, 'user-data', coll)
+        const docsSnapshots = await getDocs(collRef)
+        const docsToArr = docsSnapshots.docs.map(doc => doc.data())
+        return docsToArr
+    }
+
     static async getId() {
         const res = await this.getDocSnapshot()
         return res.ref.path

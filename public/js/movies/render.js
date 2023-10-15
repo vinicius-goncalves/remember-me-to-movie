@@ -1,13 +1,17 @@
 import { default as Movie } from '../components/elements/MovieElement.js'
-
-import createPages from '../features/pagination.js'
-import { select } from '../features/utils.js'
-
-const movieSearchResult = select('ul[data-js="movie-search-result"]')
-const pagesUl = select('ul[data-js="pagination"]')
+import { clearChildren, isValidElement } from '../features/utils.js'
 
 function getPoster(imageLocation) {
     return `https://image.tmdb.org/t/p/w500/${imageLocation}`
+}
+
+function truncateTitle(title) {
+
+    const maxLength = 32
+
+    return title.length > maxLength
+        ? title.slice(0, maxLength).concat('...')
+        : title
 }
 
 function formatDate(date, options = {}) {
@@ -18,35 +22,35 @@ function formatDate(date, options = {}) {
     return formatter.format(new Date(date))
 }
 
-function renderMovies(movies) {
+function getReleaseDateInfo(releaseDate) {
+    return !releaseDate
+        ? 'Not Found'
+        : formatDate(releaseDate, { year: 'numeric' })
+}
 
-    movieSearchResult.replaceChildren()
+function createMovie({ id, title, poster_path, release_date }) {
 
-    const renderMovie = movie => {
+    return new Movie({
+        id,
+        title: truncateTitle(title),
+        poster_path: getPoster(poster_path),
+        release_date: getReleaseDateInfo(release_date)
+    })
+}
 
-        const { id, title, poster_path, release_date } = movie
+function renderMovies(movies, appendWhere) {
 
-        const movieElement = new Movie({
-            id,
-            title: title.length > 32 ? title.slice(0, 32).concat('...') : title,
-            poster_path: getPoster(poster_path),
-            release_date: !release_date
-                ? 'Not found'
-                : formatDate(release_date, { year: 'numeric' })
-        })
+    const args0 = arguments[0]
 
-        return movieElement
+    if(!(movies instanceof Array)) {
+        throw new TypeError(`The movies argument must be a instance of Array. Received ${args0} instead.`)
     }
 
-    const moviesRendered = movies.data.map(renderMovie)
-
-    const paginationSettings = {
-        itemsPerPage: 25,
-        startPage: 1,
-        items: moviesRendered
+    if(isValidElement(appendWhere)) {
+        clearChildren(appendWhere)
     }
 
-    createPages(paginationSettings, pagesUl, movieSearchResult)
+    const moviesRendered = movies.map(createMovie)
 
     return moviesRendered
 }

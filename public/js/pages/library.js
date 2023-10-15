@@ -1,19 +1,42 @@
 await import('../components/elements/navbar/CustomNavbar.js')
 await import('../components/elements/navbar/NavbarOption.js')
 
-import AuthUser from '../firebase/classes/AuthUser.js'
-import loadNavbar from '../features/navbar.js'
+import UserDB from '../firebase/classes/UserDB.js'
+import renderMovies from '../movies/render.js'
+
 import { select } from '../features/utils.js'
+import createPagination from '../features/pagination.js'
 
-const searchMovieBtn = select('[data-navbar-btn="searchMovie"]')
+const moviesAddedUl = select('ul[data-js="movies-added"]')
+const paginationUl = select('ul[data-js="pagination"]')
 
-// ;(async () => {
+const paginationSettings = (items) => ({
+    itemsPerPage: 25,
+    startPage: 1,
+    items
+})
 
-//     const user = await AuthUser.getUser()
-//     loadNavbar(user)
+async function loadMovies() {
 
-// })()
+    const moviesIds = await UserDB.getDocsFromCollection('movies')
 
+    const getMovie = async ({ movie_id }) => {
+        const fetchRes = await fetch(`http://localhost:8080/movie/${movie_id}`)
+        return fetchRes.json()
+    }
+
+    const movies = moviesIds
+        .map(getMovie)
+        .map(async (movie) => (await movie).data)
+
+    const moviesData = await Promise.all(movies)
+    const moviesRendered = renderMovies(moviesData, moviesAddedUl)
+
+    const pagesSettings = paginationSettings(moviesRendered)
+    createPagination(pagesSettings, paginationUl, moviesAddedUl)
+}
+
+loadMovies()
 // import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
 // import { doc, getDoc, deleteDoc, updateDoc, arrayRemove } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js"
 
@@ -65,7 +88,6 @@ const searchMovieBtn = select('[data-navbar-btn="searchMovie"]')
     //             })
     //         })
 
-    //         const promise = new Promise((resolve, reject) => {
     //             if(user) {
     //                 resolve(userProfileAtNavbar.src = auth.currentUser.photoURL)
     //             }else {

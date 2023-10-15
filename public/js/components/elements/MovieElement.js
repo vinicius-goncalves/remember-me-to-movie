@@ -30,6 +30,7 @@ const { wrappersSelector, lisSelector, detailsSelector } = {
 
 class MovieElement extends HTMLElement {
     constructor({ id, ['title']: name, poster_path, release_date }) {
+
         super()
 
         const self = this
@@ -70,4 +71,4 @@ class MovieElement extends HTMLElement {
 
 helper.defineComponent(MovieElement)
 
-export default MovieElement
+export default MovieElement 

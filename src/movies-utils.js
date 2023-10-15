@@ -40,6 +40,18 @@ async function getMovieByName(name, page = 1) {
     return data
 }
 
+async function getMovieById(id) {
+
+    const url = getDefaultURLRequest()
+    url.href = url.href.replace('search/', '')
+    url.pathname = url.pathname.concat('/', id)
+
+    const data = await fetchTo(url)
+
+    return data
+}
+
 export {
-    getMovieByName
+    getMovieByName,
+    getMovieById
 }

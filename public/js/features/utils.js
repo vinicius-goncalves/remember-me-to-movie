@@ -32,8 +32,6 @@ function select(selector) {
 function selectAll(selector) {
     const elsFound = document.querySelectorAll(selector)
     return [...elsFound]
-    // const allElsMatch = [...elsFound].some(el => !el.matches(selector))
-    // return allElsMatch ? elsFound : -1
 }
 
 function createIcon(name) {
@@ -50,7 +48,7 @@ function clearChildren(...elements) {
         return
     }
 
-    elements.forEach(el => el.replaceChildren())
+    elements.forEach(el => el?.replaceChildren())
 }
 
 async function fetchAndLoadCSS(endpoint, component) {
@@ -87,6 +85,17 @@ async function fetchTemplate(endpoint) {
     })
 }
 
+function isValidElement(element) {
+
+    const args0 = arguments[0]
+
+    if(!(element instanceof Element)) {
+        throw new TypeError(`The element argument must be a instance of Element. Received ${args0} instead.`)
+    }
+
+    return true
+}
+
 export {
     buildFirebaseSDKUrl,
     detailFirebaseAuthError,
@@ -95,5 +104,6 @@ export {
     createIcon,
     clearChildren,
     fetchAndLoadCSS,
-    fetchTemplate
+    fetchTemplate,
+    isValidElement
 }

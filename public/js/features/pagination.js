@@ -64,10 +64,10 @@ const createPage = (pageNumber = 1, activePage = false, paginationWrapper) => {
  * @param { Element } paginationWrapper - The DOM element to append the PAGES.
  * @param { Element } itemsWrapper - The DOM element to append the ITEMS.
  * @example
- * createPages({ itemsPerPage: 3, startPage: 1, items: [item1, item2, itemN] })
- * createPages({ ... }, pagesWrapper, myItemsWrapper)
+ * createPagination({ itemsPerPage: 3, startPage: 1, items: [item1, item2, itemN] })
+ * createPagination({ ... }, pagesWrapper, myItemsWrapper)
  */
-function createPages(settings, paginationWrapper, itemsWrapper) {
+function createPagination(settings, paginationWrapper, itemsWrapper) {
 
     clearChildren(itemsWrapper, paginationWrapper)
 
@@ -83,7 +83,7 @@ function createPages(settings, paginationWrapper, itemsWrapper) {
 
             const page = createPage(i, i == startPage, paginationWrapper)
 
-            page.onclick = () => createPages({
+            page.onclick = () => createPagination({
                 ...settings,
                 startPage: i
             }, paginationWrapper, itemsWrapper)
@@ -92,12 +92,16 @@ function createPages(settings, paginationWrapper, itemsWrapper) {
 
     ;(() => {
 
+        if(settings.items.length <= settings.itemsPerPage) {
+            return
+        }
+
         if(startPage > 1) {
 
             const prevBtn = createButton('prev', paginationWrapper)
 
             prevBtn.addEventListener('click', () => {
-                createPages({
+                createPagination({
                     ...settings,
                     startPage: startPage - 1
                 }, paginationWrapper, itemsWrapper)
@@ -111,7 +115,7 @@ function createPages(settings, paginationWrapper, itemsWrapper) {
             const nextBtn = createButton('next', paginationWrapper)
 
             nextBtn.addEventListener('click', () => {
-                createPages({
+                createPagination({
                     ...settings,
                     startPage: startPage + 1
                 }, paginationWrapper, itemsWrapper)
@@ -130,4 +134,4 @@ function createPages(settings, paginationWrapper, itemsWrapper) {
     })()
 }
 
-export default createPages
+export default createPagination

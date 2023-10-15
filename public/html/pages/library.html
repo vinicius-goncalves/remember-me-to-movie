@@ -7,9 +7,9 @@
         <title>Library | Remember me to movie</title>
         <link rel="stylesheet" href="/public/style/library.css">
         <link rel="stylesheet alternative" href="/public/style/template.css">
+        <link rel="stylesheet alternative" href="/public/style/search-movie.css">
     </head>
     <body>
-
         <custom-navbar>
             <navbar-option if="logged-in" to="#">
                 <img src="/public/images/icons/home.png">
@@ -33,37 +33,18 @@
                 <img src="/public/images/user-photo-profile.png">
             </navbar-option>
         </custom-navbar>
-
-        <!-- <main>
-            <div class="user-information">
-                <h1>Information</h1>
-                <p>A última vez que você adicionou um filme foi: <span class="last-date-movie-added"></span></p>
+        <main>
+            <div data-container="movies-added">
+                <h1>Movies added</h1>
+                <p><span class="last-date-movie-added"></span></p>
             </div>
-        </main> -->
-
-        <!-- <nav data-js="navbar">
-            <a data-navbar-btn="search-movie" href="./search-movies.html" data-js="logged-in">Buscar filme</a>
-            <a href="./library.html" data-js="logged-in">Minha biblioteca</a>
-            <a href="./profile.html" data-js="logged-in">Minha conta</a>
-            <a data-navbar-btn="logged-out" data-js="logged-out logged-in" href="#">Sair</a>
-            <a href="/html/login.html" data-js="logged-out">Entrar</a>
-            <a href="/html/register.html" data-js="logged-out">Registrar</a>
-
-            <div data-js="logged-in" id="loader-profile-image-container-navbar">
-                <div id="loader-profile-navbar"></div>
-            </div>
-            <img src="/public/images/user-photo-profile.png" data-js="logged-in" id="user-image-profile-navbar">
-        </nav> -->
-
-        <ul id="ul-movies-library">
-            <!-- <li data-li="${value.id}">
-                <div class="movie-informations">
-                    <img src="https://image.tmdb.org/t/p/w500/2WIwz0qJpnVAiofTAhrmhbKxuvE.jpg" class="movie-poster">
-                    <i class="fas fa-trash" data-remove="${remove}"></i>
-                </div>
-            </li> -->
-        </ul>
-
+        </main>
+        <div>
+            <ul data-js="movies-added"></ul>
+        </div>
+        <div>
+            <ul data-js="pagination"></ul>
+        </div>
         <script type="module" src="/public/js/pages/library.js"></script>
     </body>
 </html>

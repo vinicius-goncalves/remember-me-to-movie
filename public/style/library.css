@@ -3,6 +3,11 @@
     ! This sections is for result container, when the user makes a search
  */
 
+div[data-container="movies-added"] h1 {
+    color: #FFFFFF;
+    text-align: center;
+}
+/* 
 #ul-movies-library {
     list-style-type: none;
     display: flex;
@@ -52,4 +57,4 @@ i {
     color: white;
     text-align: center;
     margin-top: 50px;
-}
+} */

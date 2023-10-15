@@ -56,4 +56,4 @@ async function redirectLoggedUser() {
 }
 
 preventAllForms()
-// redirectLoggedUser()
+redirectLoggedUser()

@@ -1,17 +1,14 @@
 nav[data-component-name="custom-navbar"] {
-
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     min-width: 100%;
-
     display: flex;
     justify-content: end;
     align-items: center;
     background-color: var(--color0);
     z-index: 1;
-
     overflow: hidden;
 }
 
